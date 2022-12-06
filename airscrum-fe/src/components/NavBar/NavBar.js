@@ -20,7 +20,7 @@ function NavBar() {
   return (
     <div className="container-fluid">
       <div className="header">
-        <div >
+        <div className='left'>
           <img src={require('../../Assets/Air_scrum-removebg-preview.png')} className="logo" alt='Air Scrum'/>
           <a href="#" className ="title">AirScrum</a>
         </div>
@@ -48,7 +48,7 @@ function NavBar() {
             	<Link href="#about" title="Upload" />
             	<Link href="#feature" title="About Us" />
             	<Link href="#works" title="Profile" />
-            	<Link href="#faq" title="Logout" />
+            	<Link href="#faq" title="Logout" className='logout'/>
           </Anchor>
           </Drawer>
         </div>

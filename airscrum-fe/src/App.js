@@ -7,7 +7,7 @@ import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile"
 import SignUp from "./pages/SignUp/SignUp";
 import Upload from "./pages/Upload/Upload";
-import '../src/css/App.css';
+
 
 function App() {
   return (

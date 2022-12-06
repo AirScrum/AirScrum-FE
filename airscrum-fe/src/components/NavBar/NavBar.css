@@ -22,7 +22,7 @@ header
 
 
 .header{
-	font-size: 22px;
+	font-size: 30px;
 	text-transform: uppercase;
 	font-weight: 400;
 	display: flex;
@@ -35,7 +35,7 @@ header
 .header.fas {
 	color: #043E7D;
 	margin: 0 5px 0 0;
-	font-size: 28px;
+	font-size: 30px;
 }
 
 
@@ -63,7 +63,7 @@ header
 	line-height: 1.4;
 	position: relative;
 	margin-left: 50px;
-	font-size: larger;
+	font-size: 20px;
 	opacity: 0.4;
 }
 
@@ -76,7 +76,8 @@ header
 
 
 .logout .ant-anchor-link-title{
-	color:#FF0751 !important;
+	color:red !important;
+	opacity: 1;
 }
 
 .ant-anchor-link-active .ant-anchor-link-title-active{
@@ -148,9 +149,12 @@ header
 }
 
 
-.ant-anchor-link{
-	margin-bottom: 10px;
+
+
+.ant-drawer-body .ant-anchor-link{
+	margin-bottom: 30px;
 }
+
 
 @media only screen and (max-width: 927px) {
   
@@ -168,4 +172,14 @@ header
 	.ant-drawer-content-wrapper{
 		width: 300px !important;
 	}
-  }
+}
+
+@media only screen and (max-width: 350px) {
+	.left{
+		display: none;
+	}
+
+	.ant-drawer-content-wrapper{
+		width: 200px !important;
+	}
+}
