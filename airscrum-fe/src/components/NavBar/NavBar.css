@@ -1,0 +1,171 @@
+
+/* 
+header
+------ 
+*/
+
+.container-fluid{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background-color: #f5f5f5;
+	max-height: 100px;
+}
+
+
+.ant-layout-header {
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 999;
+}
+
+
+.header{
+	font-size: 22px;
+	text-transform: uppercase;
+	font-weight: 400;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 0;
+	max-height: 100px;
+}
+
+.header.fas {
+	color: #043E7D;
+	margin: 0 5px 0 0;
+	font-size: 28px;
+}
+
+
+.header .ant-anchor-wrapper {
+	background: none;
+}
+
+.header .ant-anchor {
+	display: flex;
+	margin-right: 10px;
+}
+
+.header .ant-anchor-ink {
+	display: none;
+	
+}
+
+.ant-anchor-link{
+	padding: 0 !important;
+	
+}
+
+.ant-anchor-link-title {
+	padding: 0;
+	line-height: 1.4;
+	position: relative;
+	margin-left: 50px;
+	font-size: larger;
+	opacity: 0.4;
+}
+
+
+.ant-btn-primary{
+	background-color: transparent;
+	box-shadow: none;
+	height: 50px;
+}
+
+
+.logout .ant-anchor-link-title{
+	color:#FF0751 !important;
+}
+
+.ant-anchor-link-active .ant-anchor-link-title-active{
+	color:#043E7D !important;
+	opacity: 1;
+}
+
+
+
+.mobileHidden .ant-anchor-link-title,
+.mobileHidden .ant-anchor-link-title:after,
+.mobileHidden .ant-anchor-link-title:before {
+  transition: all 0.5s;
+}
+
+
+.ant-anchor .ant-anchor-link-title:hover{
+	opacity: 0.8;
+}
+
+.mobileHidden .ant-anchor-link-title:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: ".";
+  color: transparent;
+  background: #043E7D;
+  height: 1px;
+}
+.mobileHidden .ant-anchor-link-title:hover:after {
+  width: 100%;
+}
+
+
+
+
+.logo{
+	width: 100px;
+	height: 100px;
+	display: inline;
+	vertical-align: middle;
+}
+
+.menu{
+	width: 30px;
+	height: 40px;
+	display: inline;
+	vertical-align: middle;
+}
+
+.title{
+	display: inline;
+	text-decoration: none;
+	color: #043E7D;
+}
+
+.mobileVisible{
+	display: none;
+	margin-right: 30px;
+	vertical-align: middle;
+	height: 50px;
+}
+
+.mobileHidden{
+	margin-right: 20px;
+}
+
+
+.ant-anchor-link{
+	margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 927px) {
+  
+
+  .mobileVisible {
+    display: block;
+  }
+  
+  .mobileHidden {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+	.ant-drawer-content-wrapper{
+		width: 300px !important;
+	}
+  }
