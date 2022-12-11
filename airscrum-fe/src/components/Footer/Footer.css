@@ -1,0 +1,25 @@
+.footer {
+    background-color: var(--smoky-white);
+    border-top: 1px solid var(--main-text-color);
+}
+.SiteMap-list-group.list-group{
+    background-color: transparent !important;
+}
+.SiteMap-list-group .list-group-item{
+    background-color: transparent !important;
+    border: none !important;
+    text-decoration: none !important;
+}
+.SiteMap-list-group .list-group-item a{
+    color: var(--main-text-color);
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    text-decoration: none;
+}
+.SiteMap-list-group .list-group-item a:hover{
+    color: var(--main-text-color-hover);
+    text-decoration: underline;
+}

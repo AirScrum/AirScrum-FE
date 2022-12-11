@@ -2,9 +2,11 @@
 :root{
     --main-sky-color: #E7F0F6;
     --main-text-color:#043E7D;
+    --main-text-color-hover: #012041;
     --secondary-text-color: #83B1CF;
     --main-button-color: #00008B;
     --main-button-color-hover: #000047;
+    --smoky-white: #F5F5F5;
 }
 *{
     box-sizing: border-box;

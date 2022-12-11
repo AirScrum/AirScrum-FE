@@ -27,14 +27,14 @@ function NavBar() {
         </div>
         <div className="mobileHidden">
           <Anchor targetOffset="65">
-            <Link href="/" title="Home" />
-            <Link href="/about" title="About Us" />
+            <Link to="/" title="Home" />
+            <Link to="/about" title="About Us" />
             {/**
                * If user logged it, show the below Links 
               */}
-            <Link href="/upload" title="Upload" />
-            <Link href="/profile" title="Profile" />
-            <Link href="/logout" title="Logout" className='logout' />
+            <Link to="/upload" title="Upload" />
+            <Link to="/profile" title="Profile" />
+            <Link to="/logout" title="Logout" className='logout' />
           </Anchor>
         </div>
         <div className="mobileVisible">
