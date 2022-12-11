@@ -1,0 +1,35 @@
+@media (max-width:600px) {
+    #GetStarted-Container-Text {
+        margin-top: 2rem;
+    }
+}
+
+@media (min-width:600px) {
+    #GetStarted-Container-Text {
+        margin-top: 2.1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #GetStarted-Container-Text {
+        margin-top: 2.3rem;
+    }
+}
+
+@media (min-width:992px) {
+    #GetStarted-Container-Text {
+        margin-top: 10rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    #GetStarted-Container-Text {
+        margin-top: 10rem;
+    }
+}
+
+@media (min-width: 1201px) {
+    #GetStarted-Container-Text {
+        margin-top: 10rem;
+    }
+}
