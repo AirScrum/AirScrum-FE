@@ -1,5 +1,6 @@
 import FlyingImage from "../../assets/Flying around the world-rafiki.svg"
 import SignUpBro from "../../assets/Sign up-bro.png";
+import UploadBro from "../../assets/Image upload-bro.png"
 import {Container, Col, Row, Button} from "react-bootstrap"
 import "./Home.css";
 const Home = ()=>{
@@ -9,7 +10,7 @@ const Home = ()=>{
             <Row>
                 <Col id={"GetStarted-Container-Text"} sm={6} className="px-5">
                     <h1 className="main-text-color text-bold fw-bold">User Stories on the AIR!</h1>
-                    <p className="main-secondary-color light-rubik-font">AirScrum allows Scrum team members to generate user stories using Artificial Intelligence technology immediately from scrum meetings recordings!</p>
+                    <p className="main-secondary-color light-rubik-font">AirScrum allows Scrum team members to generate user<br/> stories using Artificial Intelligence technology immediately<br/> from scrum meetings recordings!</p>
                     <Button className="rounded-button">Get Started</Button>
                 </Col>
                 <Col sm={6} className="text-center">
@@ -30,6 +31,17 @@ const Home = ()=>{
                         <li>See generated user stories.</li>
                         <li>Check uploaded requests history.</li>
                     </ul>
+                </Col>
+            </Row>
+        </Container>
+        <Container fluid className="main-sky-color-background">
+            <Row>
+                <Col id={"GetStarted-Container-Text"} sm={6} className="px-5">
+                    <h2 className="main-text-color text-bold fw-bold text-wrap">Upload all your team<br></br> recorded meetings!</h2>
+                    <p className="main-text-color light-rubik-font">Simply upload your scrum meetings<br/> with just one click and watch how<br/> they are being processed 🔥</p>
+                </Col>
+                <Col sm={6} className="text-center">
+                    <img alt="Flying Plane" src={UploadBro}/>
                 </Col>
             </Row>
         </Container>
