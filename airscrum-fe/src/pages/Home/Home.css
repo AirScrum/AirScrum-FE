@@ -1,35 +1,35 @@
 @media (max-width:600px) {
     #GetStarted-Container-Text {
-        margin-top: 2rem;
+        margin: auto;
     }
 }
 
 @media (min-width:600px) {
     #GetStarted-Container-Text {
-        margin-top: 2.1rem;
+        margin: auto;
     }
 }
 
 @media (min-width: 768px) {
     #GetStarted-Container-Text {
-        margin-top: 2.3rem;
+        margin: auto;
     }
 }
 
 @media (min-width:992px) {
     #GetStarted-Container-Text {
-        margin-top: 10rem;
+        margin:auto;
     }
 }
 
 @media (min-width: 1200px) {
     #GetStarted-Container-Text {
-        margin-top: 10rem;
+        margin:auto;
     }
 }
 
 @media (min-width: 1201px) {
     #GetStarted-Container-Text {
-        margin-top: 10rem;
+        margin:auto;
     }
 }

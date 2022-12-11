@@ -1,6 +1,7 @@
 import FlyingImage from "../../assets/Flying around the world-rafiki.svg"
 import SignUpBro from "../../assets/Sign up-bro.png";
 import UploadBro from "../../assets/Image upload-bro.png"
+import SetupBro from "../../assets/Setup-rafiki.png";
 import {Container, Col, Row, Button} from "react-bootstrap"
 import "./Home.css";
 const Home = ()=>{
@@ -14,7 +15,7 @@ const Home = ()=>{
                     <Button className="rounded-button">Get Started</Button>
                 </Col>
                 <Col sm={6} className="text-center">
-                    <img alt="Flying Plane" src={FlyingImage}/>
+                    <img alt="Flying Plane" src={FlyingImage} style={{width:"inherit"}}/>
                 </Col>
             </Row>
         </Container>
@@ -37,11 +38,26 @@ const Home = ()=>{
         <Container fluid className="main-sky-color-background">
             <Row>
                 <Col id={"GetStarted-Container-Text"} sm={6} className="px-5">
-                    <h2 className="main-text-color text-bold fw-bold text-wrap">Upload all your team<br></br> recorded meetings!</h2>
-                    <p className="main-text-color light-rubik-font">Simply upload your scrum meetings<br/> with just one click and watch how<br/> they are being processed 🔥</p>
+                    <h2 className="main-text-color text-bold fw-bold text-wrap text-start">Upload all your team<br></br> recorded meetings!</h2>
+                    <p className="main-text-color light-rubik-font text-start">Simply upload your scrum meetings<br/> with just one click and watch how<br/> they are being processed 🔥</p>
                 </Col>
                 <Col sm={6} className="text-center">
-                    <img alt="Flying Plane" src={UploadBro}/>
+                    <img alt="Upload Bro"  style={{width:"inherit"}} src={UploadBro}/>
+                </Col>
+            </Row>
+        </Container>
+        <Container fluid className={"my-5"}>
+        <Row>
+                <Col sm={6} className="text-center my-5">
+                    <img alt="SignUp Bro" style={{width:"inherit"}}src={SetupBro}/>
+                </Col>
+                <Col id={"GetStarted-Container-Text"} sm={6} className="px-5">
+                    <h2 className="main-text-color text-bold fw-bold">Manage your generated<br/> User Stories!</h2>
+                    <p className="main-text-color light-rubik-font">Giving you flexibility in dealing with your<br/>AI generated user stories 🧠🦾</p>
+                    <ul className="main-text-color light-rubik-font" >
+                        <li>Access your user stories information.</li>
+                        <li>Modify user stories’ meta data.</li>
+                    </ul>
                 </Col>
             </Row>
         </Container>
