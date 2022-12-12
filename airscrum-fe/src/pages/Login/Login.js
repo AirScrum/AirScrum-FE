@@ -5,10 +5,10 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 const Login = ()=>{
     return (
         <div className="card card-in">
-            <div className="left">
+            <div className="left-card">
                 <div className="overlay" id="in"></div>
             </div>
-            <div className="right">
+            <div className="right-card">
                 <h1 className="title">Login</h1>
                 <Button type="primary"><img src={require("../../Assets/icons8-google-48.png")} alt="google icon" className="google-logo"/>sign in with google</Button> <br />
                 <div className="middle-hr">
