@@ -1,5 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap');
+:root{
+    --main-sky-color: #E7F0F6;
+    --main-text-color:#043E7D;
+    --main-text-color-hover: #012041;
+    --secondary-text-color: #83B1CF;
+    --main-button-color: #00008B;
+    --main-button-color-hover: #000047;
+    --smoky-white: #F5F5F5;
+}
 *{
     box-sizing: border-box;
     margin: 0;
@@ -163,3 +171,45 @@
 	opacity: 1;
 }
 
+.light-rubik-font{
+    font-family: 'Rubik',sans-serif !important;
+    font-weight: 300 !important;
+}
+.main-sky-color{
+    color: var(--main-sky-color) !important;
+}
+
+.main-sky-color-background{
+    background-color: var(--main-sky-color) !important;
+}
+
+.main-text-color{
+    color: var(--main-text-color) !important;
+}
+
+.main-secondary-color{
+    color:var(--secondary-text-color) !important;
+}
+
+.rounded-button{
+    background-color: var(--main-button-color) !important;
+    color: white !important;
+    font-weight: bold !important;
+    border-radius: 40px !important;
+    -webkit-border-radius: 40px !important;
+    -moz-border-radius: 40px !important;
+    -ms-border-radius: 40px !important;
+    -o-border-radius: 40px !important;
+    border: none;
+    padding: 12px 30px 12px 30px;
+    font-size: 12px;
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+.rounded-button:hover{
+    background-color: var(--main-button-color-hover) !important;
+}
