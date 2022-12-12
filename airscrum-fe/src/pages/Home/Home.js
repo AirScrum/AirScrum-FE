@@ -1,7 +1,7 @@
-import FlyingImage from "../../assets/Flying around the world-rafiki.svg"
-import SignUpBro from "../../assets/Sign up-bro.png";
-import UploadBro from "../../assets/Image upload-bro.png"
-import SetupBro from "../../assets/Setup-rafiki.png";
+import FlyingImage from "../../Assets/Flying around the world-rafiki.svg"
+import SignUpBro from "../../Assets/Sign up-bro.png";
+import UploadBro from "../../Assets/Image upload-bro.png"
+import SetupBro from "../../Assets/Setup-rafiki.png";
 import {Container, Col, Row, Button} from "react-bootstrap"
 import "./Home.css";
 const Home = ()=>{

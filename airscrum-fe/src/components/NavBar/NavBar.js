@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import { Anchor, Drawer, Button } from 'antd';
-import Preview from "../../assets/Air_scrum-removebg-preview.png"
-import MenuIcon from "../../assets/icons8-menu-50.png"
+import Preview from "../../Assets/Air_scrum-removebg-preview.png"
+import MenuIcon from "../../Assets/icons8-menu-50.png"
 import './NavBar.css';
 
 const { Link } = Anchor;
@@ -23,7 +23,7 @@ function NavBar() {
       <div className="header">
         <div className='left'>
           <img src={Preview} className="logo" alt='Air Scrum' />
-          <a href="#" className="title">AirScrum</a>
+          <a href="../../pages/Home/Home.js" className="title">AirScrum</a>
         </div>
         <div className="mobileHidden">
           <Anchor targetOffset="65">

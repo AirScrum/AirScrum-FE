@@ -1,5 +1,5 @@
 import 'rc-footer/assets/index.css';
-import Logo from "../../assets/Air_scrum-removebg-preview 1.png"
+import Logo from "../../Assets/Air_scrum-removebg-preview 1.png"
 import {Container, Col, Row, Button, ListGroup, ListGroupItem} from "react-bootstrap"
 import { Link } from "react-router-dom";
 import "./Footer.css"
