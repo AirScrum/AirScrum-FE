@@ -4,7 +4,7 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 const Login = ()=>{
     return (
-        <div className="card card-in">
+        <div className="card-sign card-in">
             <div className="left-card">
                 <div className="overlay" id="in"></div>
             </div>

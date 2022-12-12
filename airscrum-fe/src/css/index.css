@@ -21,22 +21,28 @@
     padding: 0;
     font-family: 'Rubik',sans-serif;
 }
+
 .light-rubik-font{
     font-family: 'Rubik',sans-serif !important;
     font-weight: 300 !important;
 }
+
 .main-sky-color{
     color: var(--main-sky-color) !important;
 }
+
 .main-sky-color-background{
     background-color: var(--main-sky-color) !important;
 }
+
 .main-text-color{
     color: var(--main-text-color) !important;
 }
+
 .main-secondary-color{
     color:var(--secondary-text-color) !important;
 }
+
 .rounded-button{
     background-color: var(--main-button-color) !important;
     color: white !important;
@@ -55,12 +61,13 @@
     -ms-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
 }
+
 .rounded-button:hover{
     background-color: var(--main-button-color-hover) !important;
 }
 
 
-.card {
+.card-sign {
 	margin: 0 auto;
 	width: 80%;
 	background: whitesmoke;
@@ -75,14 +82,14 @@
 
 
 
-.card .left-card {
+.card-sign .left-card {
 	color: whitesmoke;
 	flex-grow: 1;
 	flex-shrink: 1;
 	flex-basis: 100%;
 }
 
-.card .left-card .overlay {
+.card-sign .left-card .overlay {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -92,7 +99,7 @@
   background-position: center;
 }
 
-.card .right-card {
+.card-sign .right-card {
   padding: 20px;
   overflow: hidden;
   width: 50%;
@@ -105,7 +112,7 @@
 	background-color: var(--smoky-white) ;
 }
 
-.card .title{
+.card-sign .title{
 	color: var(--main-button-color) ;
 	font-size: 45px;
 }
