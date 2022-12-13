@@ -9,7 +9,7 @@ const Login = ()=>{
     return (
         <div className="card-sign card-in">
             <div className="left-card">
-                <div className="overlay" id="in"></div>
+            <a href="https://storyset.com/home" target="_blank" className="redirect" rel="noreferrer"><div className="overlay" id="in"></div></a>
             </div>
             <div className="right-card">
                 <h1 className="title">Login</h1>
@@ -53,7 +53,7 @@ const Login = ()=>{
                         </Col>
                     </Row>
                     <Form.Item>
-                        <Button type="success" htmlType="submit" className="login">
+                        <Button type="success" htmlType="submit" className="btn-confirm">
                             Login
                         </Button>
                     </Form.Item>

@@ -66,6 +66,9 @@
     background-color: var(--main-button-color-hover) !important;
 }
 
+.redirect:hover{
+    cursor: default;
+}
 
 .card-sign {
 	margin: 0 auto;
@@ -134,8 +137,8 @@
 	border-color: var(--main-button-color)  !important;
 }
 
-.login{
-	margin-top: 10px;
+.btn-confirm{
+	margin-top: 0px;
 	display: block;
 	width: 100%;
 	border-radius: 20px;
@@ -147,7 +150,7 @@
 	background-color: var(--main-button-color);
 }
 
-.login:hover{
+.btn-confirm:hover{
 	background-color: var(--main-button-color-hover) !important;
 	color: whitesmoke !important;
 }
@@ -157,7 +160,7 @@
 	background: url(../Assets/icons8-mail-24.png) no-repeat scroll 8px 12px;
 	background-size: 15px;
 	padding-left:30px;
-	padding-top: 10px;
+	padding-top: 7px;
 	padding-bottom: 10px;
 }
 
@@ -165,7 +168,7 @@
 	background: url(../Assets/icons8-lock-50.png) no-repeat scroll 8px 12px;
 	background-size: 15px;
 	padding-left:30px;
-	padding-top: 10px;
+	padding-top: 9px;
 	padding-bottom: 10px;
 }
 
@@ -200,33 +203,28 @@
 
 
 @media (max-width: 1130px) {
-  .card {
+  .card-sign {
     flex-flow: wrap;
     text-align: center;
     align-content: center;
     align-items: center;
   }
-  .card .left-card .overlay {
+  .card-sign .left-card .overlay {
     min-height: 370px;
   }
 }
 
 
 @media (max-width: 660px) {
-  .card{
+  .card-sign{
     width: 90%;
   }
 }
 
 
-@media (max-width: 526px) {
-  .card{
-    width: 99%;
-  }
-}
 
 @media (max-width: 400px) {
-  .card .right-card {
+  .card-sign .right-card {
 		padding: 20px;
 	}
 

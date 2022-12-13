@@ -1,9 +1,10 @@
 .card-in{
 	margin-top: 3% !important;
+	margin-bottom: 3% !important;
 }
 
 #in{
-	background-image: url(../../Assets/background2.png);
+	background-image: url(../../Assets/background2.png) !important;
 }
 
 .ant-btn{
