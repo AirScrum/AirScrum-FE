@@ -1,12 +1,5 @@
-Body{
-	background-color: var(--light-purple) !important;
-	padding: 30px;
-	height: 100%;
-	width: 100%;
-}
-
 .card-in{
-	margin-top: 1% !important;
+	margin-top: 3% !important;
 }
 
 #in{

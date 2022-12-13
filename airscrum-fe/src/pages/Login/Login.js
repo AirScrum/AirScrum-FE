@@ -3,6 +3,9 @@ import { Form, Button, Input,Checkbox, Row,Col } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 const Login = ()=>{
+
+    document.body.style = 'background: #CBC3E3 !important;';
+
     return (
         <div className="card-sign card-in">
             <div className="left-card">
