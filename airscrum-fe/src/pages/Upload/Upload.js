@@ -3,6 +3,7 @@ import "./Upload.css"
 import { Button, message, Upload , Progress, Typography } from 'antd';
 import FilesSent from "../../Assets/Files sent-amico.png";
 import { UploadOutlined } from '@ant-design/icons';
+import UserStory from "../../components/UserStoryCard/UserStoryCard";
 const { Title } = Typography;
 
 const UploadFun = ()=>{
@@ -72,7 +73,15 @@ const UploadFun = ()=>{
 			</div>
 			<Title level={2} className="main-text-color fw-bold generated-title">Generated User Stories</Title>
 			<span className="feel-free">Feel free to add, edit or delete any user story. But do not forget to save</span>
-            
+            <br/>
+            <div className='all-user-stories-container'>
+                <UserStory/>
+                <UserStory/>
+                <UserStory/>
+                <UserStory/>
+                <UserStory/>
+                <UserStory/>
+            </div>
 			<Button type="success" htmlType="submit" className="btn-confirm save-btn">
                 Save Changes
             </Button>

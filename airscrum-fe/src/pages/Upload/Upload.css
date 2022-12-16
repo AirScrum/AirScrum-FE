@@ -55,7 +55,7 @@
 }
 
 .generated-title{
-	margin-bottom: 0px;
+	margin-bottom: 0px !important;
 }
 
 .feel-free{
@@ -66,10 +66,17 @@
 }
 
 .save-btn{
-	margin-top: 40px !important;
 	margin: 0 auto;
 	width: 50% !important;
 	margin-bottom: 40px !important;
+}
+
+.all-user-stories-container{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	padding: 30px;
+	justify-content: space-around;
 }
 
 @media (max-width: 750px) {
@@ -90,6 +97,6 @@
 
 @media (max-width: 380px) {
 	.upload-btn{
-		padding-bottom: 30px !important;
+		padding-bottom: 10px !important;
 	}
 }
