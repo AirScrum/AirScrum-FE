@@ -45,7 +45,7 @@ function NavBar() {
             placement="right"
             closable={false}
             onClose={onClose}
-            visible={visible}
+            open={visible}
           >
             <Anchor targetOffset="65">
               <Link href="/" title="Home" />

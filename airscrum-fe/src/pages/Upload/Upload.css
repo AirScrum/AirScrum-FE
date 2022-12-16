@@ -7,7 +7,7 @@
 
 .upload-img{
 	max-width: 40%;
-  display: block;
+    display: block;
 	text-align: center;
 	margin: 0 auto;
 	margin-bottom: 20px;
@@ -20,7 +20,76 @@
 	padding-bottom: 50px !important;
 }
 
+.ant-upload-select{
+	display: block !important;
+}
+
+.ant-btn-icon-only{
+	margin: 0px !important;
+}
+
+.ant-upload-list{
+	width: 50% !important;
+	margin: 0 auto !important;
+	margin-top: 10px !important;
+	margin-bottom: 0px !important;
+}
+
 .available{
 	font-size: 13px;
 	color: var(--dark-blue);
+}
+
+.progress-div{
+	margin: 0 auto;
+	width: 50%;
+}
+
+.stories-divider-div{
+	width: 70%;
+	margin: 0 auto;
+}
+
+.stories-divider{
+	border-top: 2px solid var(--main-text-color);
+}
+
+.generated-title{
+	margin-bottom: 0px;
+}
+
+.feel-free{
+	font-size: 11px;
+	color: var(--grey);
+	opacity: 0.4;
+	font-weight: bold;
+}
+
+.save-btn{
+	margin-top: 40px !important;
+	margin: 0 auto;
+	width: 50% !important;
+	margin-bottom: 40px !important;
+}
+
+@media (max-width: 750px) {
+	.upload-img{
+		max-width: 70%;
+	}
+}
+
+@media (max-width: 470px) {
+	.upload-btn{
+		width: 80% !important;
+	}
+
+	.save-btn{
+		width: 80% !important;
+	}
+}
+
+@media (max-width: 380px) {
+	.upload-btn{
+		padding-bottom: 30px !important;
+	}
 }
