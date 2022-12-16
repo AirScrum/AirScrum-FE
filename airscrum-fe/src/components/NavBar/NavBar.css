@@ -6,6 +6,9 @@
 	background-color: white;
 }
 
+.navbar-color{
+	background-color: whitesmoke ;
+}
 
 .header{
 	font-size: 30px;
@@ -116,7 +119,7 @@
 .menu{
 	width: 30px;
 	height: 40px;
-	display: inline;
+	position: relative;
 	vertical-align: middle;
 }
 
@@ -130,7 +133,15 @@
 	display: none;
 	margin-right: 30px;
 	vertical-align: middle;
-	height: 50px;
+}
+
+.open-bar-btn{
+	vertical-align: middle;
+	margin-top: 0px !important;
+}
+
+.ant-affix{
+	top: 7px !important;
 }
 
 .mobileHidden{
@@ -145,7 +156,7 @@
 }
 
 
-@media only screen and (max-width: 927px) {
+@media only screen and (max-width: 980px) {
   
 
   .mobileVisible {

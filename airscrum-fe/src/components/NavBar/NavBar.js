@@ -19,7 +19,7 @@ function NavBar() {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid navbar-color">
       <div className="header">
         <div className='left'>
           <img src={Preview} className="logo" alt='Air Scrum' />
@@ -38,7 +38,7 @@ function NavBar() {
           </Anchor>
         </div>
         <div className="mobileVisible">
-          <Button type="primary" onClick={showDrawer}>
+          <Button type="primary" onClick={showDrawer} className="open-bar-btn">
             <img src={MenuIcon} alt='Menu Bar' className='menu' />
           </Button>
           <Drawer

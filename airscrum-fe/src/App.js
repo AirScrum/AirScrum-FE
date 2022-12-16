@@ -12,7 +12,7 @@ import Upload from "./pages/Upload/Upload";
 function App() {
   return (
     <Router>
-      {/*<NavBar/>*/}
+      {<NavBar/>}
       <Routes>
         <Route path="/*" element={<Home/>}/>
         <Route path="/about" element={<About/>}/>
