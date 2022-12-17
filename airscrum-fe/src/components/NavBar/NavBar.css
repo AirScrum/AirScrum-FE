@@ -48,7 +48,7 @@
 	
 }
 
-.ant-anchor-link-title {
+.nav-visible-title {
 	padding: 0;
 	line-height: 1.4;
 	position: relative;
@@ -57,6 +57,8 @@
 	font-weight: 400;
 	opacity: 0.4;
 	text-decoration: none;
+	color:var(--grey) !important;
+	opacity: 0.6;
 }
 
 
@@ -67,30 +69,36 @@
 }
 
 
-.logout .ant-anchor-link-title{
+.logout{
 	color:rgb(185, 82, 82) !important;
 	opacity: 1;
 }
 
-.ant-anchor-link-active .ant-anchor-link-title-active{
-	color:#043E7D !important;
-	opacity: 1;
+.active-title{
+	color:var(--main-text-color) !important;
+	padding: 0;
+	line-height: 1.4;
+	position: relative;
+	margin-left: 50px;
+	font-size: 20px;
+	font-weight: 400;
+	text-decoration: none;
 }
 
 
 
-.mobileHidden .ant-anchor-link-title,
-.mobileHidden .ant-anchor-link-title:after,
-.mobileHidden .ant-anchor-link-title:before {
+.mobileHidden .nav-visible-title,
+.mobileHidden .nav-visible-title:after,
+.mobileHidden .nav-visible-title:before {
   transition: all 0.5s;
 }
 
 
-.ant-anchor .ant-anchor-link-title:hover{
-	opacity: 0.8;
+.ant-anchor .nav-visible-title:hover{
+	opacity: 1;
 }
 
-.mobileHidden .ant-anchor-link-title:after {
+.mobileHidden .nav-visible-title:after {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -102,7 +110,7 @@
   background: #043E7D;
   height: 1px;
 }
-.mobileHidden .ant-anchor-link-title:hover:after {
+.mobileHidden .nav-visible-title:hover:after {
   width: 100%;
 }
 
@@ -141,19 +149,19 @@
 }
 
 .ant-affix{
-	top: 7px !important;
+	display: none !important;
 }
 
 .mobileHidden{
 	margin-right: 20px;
 }
 
-
-
-
-.ant-drawer-body .ant-anchor-link{
+.mobile-size{
+	display: block;
 	margin-bottom: 30px;
 }
+
+
 
 
 @media only screen and (max-width: 980px) {

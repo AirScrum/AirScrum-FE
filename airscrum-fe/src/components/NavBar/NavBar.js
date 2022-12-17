@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-
 import { Anchor, Drawer, Button } from 'antd';
 import Preview from "../../Assets/Air_scrum-removebg-preview.png"
 import MenuIcon from "../../Assets/icons8-menu-50.png"
 import './NavBar.css';
-
-const { Link } = Anchor;
+import { Link, useLocation } from "react-router-dom";
 
 function NavBar() {
   const [visible, setVisible] = useState(false);
+
+  const location = useLocation();
+
+
 
   const showDrawer = () => {
     setVisible(true);
@@ -23,19 +25,16 @@ function NavBar() {
       <div className="header">
         <div className='left'>
           <img src={Preview} className="logo" alt='Air Scrum' />
-          <a href="../../pages/Home/Home.js" className="title">AirScrum</a>
+          <a href="/" className="title">AirScrum</a>
         </div>
         <div className="mobileHidden">
-          <Anchor targetOffset="65">
-            <Link to="/" title="Home" />
-            <Link to="/about" title="About Us" />
-            {/**
-               * If user logged it, show the below Links 
-              */}
-            <Link to="/upload" title="Upload" />
-            <Link to="/profile" title="Profile" />
-            <Link to="/logout" title="Logout" className='logout' />
-          </Anchor>
+        <Anchor targetOffset="65">
+              <Link to={"/"} className={`${location.pathname === '/' ? "active-title" : "nav-visible-title"}`}>Home</Link>
+              <Link to={"/upload"} className={`${location.pathname === '/upload' ? "active-title" : "nav-visible-title"}`}>Upload</Link>
+              <Link to={"/about"} className={`${location.pathname === '/about' ? "active-title" : "nav-visible-title"}`}>About Us</Link>
+              <Link to={"/profile"} className={`${location.pathname === '/profile' ? "active-title" : "nav-visible-title"}`}>Profile</Link>
+              <Link to={"/login"} className="logout nav-visible-title">Logout</Link>
+        </Anchor>
         </div>
         <div className="mobileVisible">
           <Button type="primary" onClick={showDrawer} className="open-bar-btn">
@@ -48,14 +47,11 @@ function NavBar() {
             open={visible}
           >
             <Anchor targetOffset="65">
-              <Link href="/" title="Home" />
-              <Link href="/about" title="About Us" />
-              {/**
-               * If user logged it, show the below Links 
-              */}
-              <Link href="/upload" title="Upload" />
-              <Link href="/profile" title="Profile" />
-              <Link href="/logout" title="Logout" className='logout' />
+              <Link to={"/"} className={`${location.pathname === '/' ? "active-title mobile-size" : "nav-visible-title mobile-size"}`}>Home</Link>
+              <Link to={"/upload"} className={`${location.pathname === '/upload' ? "active-title mobile-size" : "nav-visible-title mobile-size"}`}>Upload</Link>
+              <Link to={"/about"} className={`${location.pathname === '/about' ? "active-title mobile-size" : "nav-visible-title mobile-size"}`}>About Us</Link>
+              <Link to={"/profile"} className={`${location.pathname === '/profile' ? "active-title mobile-size" : "nav-visible-title mobile-size"}`}>Profile</Link>
+              <Link to={"/login"} className="logout nav-visible-title mobile-size">Logout</Link>
             </Anchor>
           </Drawer>
         </div>
