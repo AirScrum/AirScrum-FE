@@ -1,0 +1,149 @@
+.profile-container{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.blue-up-cont{
+    max-height: 40px;
+    background-color: var(--secondary-text-color-low-opacity);
+    padding-top: 100px;
+    padding-bottom: 90px;
+}
+
+.invisible{
+    visibility: hidden;
+}
+
+
+.white-down-cont{
+    position: relative;
+    top: -90px;
+    left: 10%;
+    margin-right: 10%;
+}
+
+.acc-settings-cont{
+    margin-top: 7px;
+    margin-right: 10%;
+    background-color: whitesmoke;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.acc-title{
+    font-size: 25px;
+}
+
+.first-left-container{
+    padding-left: 20px;
+    padding-top: 20px;
+    display: block;
+}
+
+.profile-img{
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+.second-left-container{
+    padding-left: 80px;
+    padding-top: 10px;
+    display: block;
+    width: 70%;
+}
+
+
+.second-flex-container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+}
+
+.second-second-cont{
+    min-width: 40%;
+    margin-right: 20px;
+}
+
+.first-second-cont{
+    min-width: 40%;
+    margin-right: 20px;
+}
+
+.without-logo{
+    background: none !important;
+    padding-left: 10px !important;
+}
+
+.name-seperator{
+    display: none;
+}
+
+.without-logo-birth{
+    background: none !important;
+    padding-left: 10px !important;
+    width: 100% !important;
+    border-color: var(--border-grey);
+}
+
+.without-logo-birth:hover{
+    border-color: var(--main-button-color) !important;
+}
+
+@media (max-width: 1285px) {
+    .second-second-cont{
+        width: 100%;
+    
+    }
+    
+    .first-second-cont{
+        width: 100%;
+    }
+}
+
+@media (max-width: 985px) {
+    .second-second-cont{
+        min-width: 20%;
+    }
+    
+    .first-second-cont{
+        min-width: 20%;
+    }
+
+    .second-left-container{
+        padding-left: 30px;
+        width: 60%;
+    }
+}
+
+@media (max-width: 750px) {
+    .second-left-container{
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+    }
+
+    .name-seperator{
+        display: block;
+    }
+
+    .profile-img{
+        margin: 0 auto !important;
+    }
+
+    .first-left-container{
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+}

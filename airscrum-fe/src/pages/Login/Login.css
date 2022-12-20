@@ -76,4 +76,11 @@
 	opacity: 0.6;
 }
 
+.acc-title{
+	font-size: 22px;
+	font-weight: 600;
+}
 
+.profile-container{
+	background-color: whitesmoke;
+}

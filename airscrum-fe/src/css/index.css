@@ -4,6 +4,7 @@
     --main-text-color:#043E7D;
     --main-text-color-hover: #012041;
     --secondary-text-color: #83B1CF;
+    --secondary-text-color-low-opacity: #83B1CF55;
     --main-button-color: #00008B;
     --main-button-color-hover: #000047;
     --smoky-white: #F5F5F5;
@@ -12,6 +13,7 @@
 	--grey: #555;
 	--light-grey: #ece9e9;
 	--dark-blue: #090b6f85;
+	--border-grey: #55555555;
 }
 
 
@@ -170,6 +172,7 @@
 	padding-left:30px;
 	padding-top: 9px;
 	padding-bottom: 10px;
+	border-color: var(--border-grey);
 }
 
 .logo-pass:focus{
