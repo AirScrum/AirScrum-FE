@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import "./About.css";
 import TeamCard from "../../components/TeamCard/TeamCard";
+import mazen from '../../Assets/mazen.PNG'
 const About = () => {
   return (
     <>
@@ -34,7 +35,7 @@ const About = () => {
             <TeamCard
               role={"Software Engineering"}
               name={"Shehab Adel"}
-              job="SWE Intern @ Siemens DISW"
+              job="Computer Engineering student"
             />
           </Col>
           {
@@ -42,7 +43,7 @@ const About = () => {
               <TeamCard
                 role={"Data Science"}
                 name={"Zyad Yakan"}
-                job="SWE Intern @ Siemens DISW"
+                job="Computer Engineering student"
               />
             </Col>
           }
@@ -51,7 +52,8 @@ const About = () => {
               <TeamCard
                 role={"Software Engineering"}
                 name={"Mazen Mahmoud"}
-                job="SWE Intern @ Siemens DISW"
+                job="Computer Engineering student"
+                avatar={mazen}
               />
             </Col>
           }
@@ -60,7 +62,7 @@ const About = () => {
               <TeamCard
                 role={"Data Science"}
                 name={"Sherif Naeem"}
-                job="SWE Intern @ Siemens DISW"
+                job="Computer Engineering student"
               />
             </Col>
           }

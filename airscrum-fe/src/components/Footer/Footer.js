@@ -1,6 +1,8 @@
 import 'rc-footer/assets/index.css';
 import Logo from "../../Assets/Air_scrum-removebg-preview 1.png"
-import {Container, Col, Row, Button, ListGroup, ListGroupItem} from "react-bootstrap"
+import {Container, ListGroup, ListGroupItem,  Row,Col} from "react-bootstrap"
+import { Button, Form, Input } from 'antd';
+
 import { Link } from "react-router-dom";
 import "./Footer.css"
 const FooterBar = ()=>{
@@ -57,6 +59,33 @@ const FooterBar = ()=>{
                     <h3 className='main-text-color'>
                         {"Contact Us"}
                     </h3>
+                    <Form
+                name="basicform"
+                onFinishFailed={() => alert('Failed to submit')}
+                onFinish={() => alert('Form Submitted')}
+                initialValues={{ remember: true }}
+                layout="vertical"
+                >
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                        rules={[{ required: true, message: 'Please enter the email' }]}
+                        colon=""
+                    >
+                        <Input placeholder="test123@gmail.com"className="logo-user"/>
+                    </Form.Item>
+                    <Form.Item
+                        label="Message"
+                        name="message"
+                        rules={[{ required: true, message: 'Please enter your message here' }]}
+                        colon=""
+                    >
+                        <Input.TextArea placeholder="Enter your message here" className="logo-user"/>
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type='primary' htmlType='submit'>Submit</Button>
+                    </Form.Item>
+                </Form>
                 </Col>
             </Row>
             <hr></hr>
