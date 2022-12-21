@@ -31,7 +31,7 @@ const About = () => {
           </Col>
         </Row>
         <Row className="mt-5 justify-content-center">
-          <Col sm={12} md={3}>
+          <Col sm={12} md={12} lg={3}>
             <TeamCard
               role={"Software Engineering"}
               name={"Shehab Adel"}
@@ -39,7 +39,7 @@ const About = () => {
             />
           </Col>
           {
-            <Col sm={12} md={3}>
+            <Col sm={12} md={12} lg={3}>
               <TeamCard
                 role={"Data Science"}
                 name={"Zyad Yakan"}
@@ -48,7 +48,7 @@ const About = () => {
             </Col>
           }
           {
-            <Col sm={12} md={3}>
+            <Col sm={12} md={12} lg={3}>
               <TeamCard
                 role={"Software Engineering"}
                 name={"Mazen Mahmoud"}
@@ -58,7 +58,7 @@ const About = () => {
             </Col>
           }
           {
-            <Col sm={12} md={3}>
+            <Col sm={12} md={12} lg={3}>
               <TeamCard
                 role={"Data Science"}
                 name={"Sherif Naeem"}
