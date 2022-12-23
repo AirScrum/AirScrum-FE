@@ -22,6 +22,11 @@ function UserStory() {
     setOpen(false);
   };
 
+  /**
+   * 
+   * TODO Allow passing the data through props.
+   * 
+   */
   return (
     <div>
       <div className="user-story-card">
