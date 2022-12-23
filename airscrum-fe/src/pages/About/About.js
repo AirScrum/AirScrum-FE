@@ -36,6 +36,7 @@ const About = () => {
               role={"Software Engineering"}
               name={"Shehab Adel"}
               job="Computer Engineering student"
+              avatar={"https://res.cloudinary.com/stack-info/image/upload/v1666967187/team/Shehab/Shehab.jpg"}
             />
           </Col>
           {
