@@ -2,12 +2,12 @@ import "./PopUpUserStoryDetails.css";
 import { Form, Input } from "antd";
 const { TextArea } = Input;
 
-const PopUpUserStoryDetail = () => {
+const PopUpUserStoryDetail = (props) => {
   return (
     <div className="story-detail-container">
       <div className="header-modal">
-        <span className="story-id">924</span>
-        <span className="story-title">User Story Title 1</span>
+        <span className="story-id">{props.storyid}</span>
+        <span className="story-title">{props.storytitle}</span>
       </div>
       <hr />
       <Form

@@ -61,7 +61,7 @@ function UserStory() {
               okButtonProps={{ className: "ok-btn-modal" }}
               cancelButtonProps={{ className: "cancel-btn-modal" }}
             >
-              <PopUpUserStoryDetails></PopUpUserStoryDetails>
+              <PopUpUserStoryDetails storyid="923" storytitle="User Stroy Test title"/>
             </Modal>
           </div>
         </div>
