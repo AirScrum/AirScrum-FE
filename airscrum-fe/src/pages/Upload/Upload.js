@@ -64,6 +64,7 @@ const UploadFun = ()=>{
             <Upload {...uploadProps}>
                 <Button icon={<UploadOutlined/>} className="btn-confirm upload-btn" >Upload audio</Button>
             </Upload>
+
             <span className="available">Available formats: mp3</span>
 			<div className='progress-div'>
 				<Progress percent={percent} status={status} />

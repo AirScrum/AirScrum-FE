@@ -1,0 +1,68 @@
+.ant-modal-content{
+    background: whitesmoke !important;
+}
+
+.ant-modal-header{
+    background-color: whitesmoke !important;
+}
+
+.ant-modal-footer{
+    display: flex !important;
+}
+
+.ok-btn-modal{
+	border-radius: 20px;
+	color: whitesmoke;
+	border-color: var(--grey);
+	font-size: 25px;
+	height: fit-content;
+	background-color: var(--main-button-color) !important;
+}
+
+.ok-btn-modal span {
+    display: none;
+}
+.ok-btn-modal:after {
+    content: 'Save Changes';
+}
+
+.ok-btn-modal:hover{
+	background-color: var(--main-button-color-hover) !important;
+	color: whitesmoke !important;
+}
+
+.cancel-btn-modal{
+	border-radius: 20px;
+	color: whitesmoke;
+	border-color: var(--grey);
+	font-size: 25px;
+	height: fit-content;
+	background-color: var(--main-button-color) !important;
+}
+
+.cancel-btn-modal span {
+    display: none;
+}
+.cancel-btn-modal:after {
+    content: 'Cancel';
+}
+
+.cancel-btn-modal:hover{
+	background-color: var(--main-button-color-hover) !important;
+	color: whitesmoke !important;
+}
+
+.ant-modal-title{
+    display: none !important;
+}
+
+.popup-label label{
+    font-weight: normal !important;
+    font-size: 16px !important;
+    color: var(--secondary-text-color) !important;
+}
+
+.without-logo{
+    background: none !important;
+    padding-left: 10px !important;
+}
