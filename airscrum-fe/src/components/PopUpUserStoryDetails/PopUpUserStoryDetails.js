@@ -23,6 +23,7 @@ const PopUpUserStoryDetail = (props) => {
             placeholder="As a user I want to be able to login to the system, by using email and password"
             maxLength={200}
             className="logo-user without-logo"
+            defaultValue={props.description}
           />
         </Form.Item>
 
@@ -32,6 +33,7 @@ const PopUpUserStoryDetail = (props) => {
             placeholder="If the user's login failed, the user should be shown an error message showing why it is rejected"
             maxLength={200}
             className="logo-user without-logo"
+            defaultValue={props.acceptance}
           />
         </Form.Item>
 
@@ -44,6 +46,7 @@ const PopUpUserStoryDetail = (props) => {
           <Input
             placeholder="3 story points"
             className="logo-user without-logo"
+            defaultValue={props.effort}
           />
         </Form.Item>
 
@@ -53,7 +56,7 @@ const PopUpUserStoryDetail = (props) => {
           className="popup-label"
           colon=""
         >
-          <Input placeholder="High" className="logo-user without-logo" />
+          <Input placeholder="High" className="logo-user without-logo" defaultValue={props.priority}/>
         </Form.Item>
       </Form>
     </div>

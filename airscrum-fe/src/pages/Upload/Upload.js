@@ -76,12 +76,12 @@ const UploadFun = ()=>{
 			<span className="feel-free">Feel free to add, edit or delete any user story. But do not forget to save</span>
             <br/>
             <div className='all-user-stories-container'>
-                <UserStory/>
-                <UserStory/>
-                <UserStory/>
-                <UserStory/>
-                <UserStory/>
-                <UserStory/>
+                <UserStory  storyid="923" storytitle="User Stroy Test title" description="As a user I want to be able to login to the system, by using email and password" acceptance="If the user's login failed, the user should be shown an error message showing why it is rejected" effort="3 story points" priority="High"/>
+                <UserStory storyid="924" storytitle="User Stroy Test title 2" description="As a user I want to be able to login to the system, by using email and password" acceptance="If the user's login failed, the user should be shown an error message showing why it is rejected" effort="3 story points" priority="High"/>
+                <UserStory storyid="925" storytitle="User Stroy Test title 3" description="As a user I want to be able to login to the system, by using email and password" acceptance="If the user's login failed, the user should be shown an error message showing why it is rejected" effort="3 story points" priority="Medium"/>
+                <UserStory storyid="926" storytitle="User Stroy Test title 4" description="As a user I want to be able to login to the system, by using email and password" acceptance="If the user's login failed, the user should be shown an error message showing why it is rejected" effort="3 story points" priority="Medium"/>
+                <UserStory storyid="927" storytitle="User Stroy Test title 5" description="As a user I want to be able to login to the system, by using email and password" acceptance="If the user's login failed, the user should be shown an error message showing why it is rejected" effort="3 story points" priority="Low"/>
+                <UserStory storyid="928" storytitle="User Stroy Test title 6" description="As a user I want to be able to login to the system, by using email and password" acceptance="If the user's login failed, the user should be shown an error message showing why it is rejected" effort="3 story points" priority="Low"/>
             </div>
 			<Button type="success" htmlType="submit" className="btn-confirm save-btn">
                 Save Changes

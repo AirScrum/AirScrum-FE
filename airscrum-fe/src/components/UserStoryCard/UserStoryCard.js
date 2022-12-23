@@ -7,7 +7,7 @@ import EditIc from "../../Assets/icons8-edit-48.png";
 import { Modal } from "antd";
 import PopUpUserStoryDetails from "../PopUpUserStoryDetails/PopUpUserStoryDetails"
 
-function UserStory() {
+function UserStory(props) {
   const [open, setOpen] = useState(false);
 
   const showModal = () => {
@@ -33,17 +33,17 @@ function UserStory() {
         <div className="story-row">
           <div>
             <img src={StoryLogo} alt="open book" className="story-logo" />
-            <h2 className="story-title">User Story Title 1</h2>
+            <h2 className="story-title">{props.storytitle}</h2>
           </div>
           <div>
-            <h2 className="story-id">924</h2>
+            <h2 className="story-id">{props.storyid}</h2>
           </div>
         </div>
         <br />
         <div className="story-row">
           <div>
             <img src={EffortLogo} alt="effor logo" className="story-logo" />
-            <h2 className="story-title">3 story points</h2>
+            <h2 className="story-title">{props.effort}</h2>
           </div>
           <div>
             <img src={Delete} alt="effort logo" className="story-logo-margin" />
@@ -61,7 +61,7 @@ function UserStory() {
               okButtonProps={{ className: "ok-btn-modal" }}
               cancelButtonProps={{ className: "cancel-btn-modal" }}
             >
-              <PopUpUserStoryDetails storyid="923" storytitle="User Stroy Test title"/>
+              <PopUpUserStoryDetails storyid={props.storyid} storytitle={props.storytitle} description={props.description} acceptance={props.acceptance} effort={props.effort} priority={props.priority}/>
             </Modal>
           </div>
         </div>
