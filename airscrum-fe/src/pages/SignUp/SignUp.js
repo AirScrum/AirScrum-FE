@@ -22,6 +22,15 @@ const SignUp = ()=>{
                 layout="vertical"
                 >
                     <Form.Item
+                        label="First and Last Name"
+                        name="name"
+                        rules={[{ required: true, message: 'Please enter your name' }]}
+                        colon=""
+                    >
+                        <Input placeholder="John Smith"className="logo-user username-pic"/>
+                    </Form.Item>
+
+                    <Form.Item
                         label="Email"
                         name="email"
                         rules={[{ required: true, message: 'Please enter the email' }]}
@@ -45,14 +54,7 @@ const SignUp = ()=>{
                     >
                         <Input.Password placeholder="123456789" className="logo-pass" iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}/>
                     </Form.Item>
-                    <Form.Item
-                        label="Username"
-                        name="username"
-                        rules={[{ required: true, message: 'Please enter the username' }]}
-                        colon=""
-                    >
-                        <Input placeholder="john_tester1432"className="logo-user username-pic"/>
-                    </Form.Item>
+                    
                     <Form.Item
                         label="Birth Date"
                         name="birthdate"

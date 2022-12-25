@@ -62,19 +62,6 @@ const Profile = () => {
                       className="logo-user without-logo"
                     />
                   </Form.Item>
-                  <Form.Item
-                    label="Username"
-                    name="username"
-                    rules={[
-                      { required: true, message: "Please enter the username" },
-                    ]}
-                    colon=""
-                  >
-                    <Input
-                      placeholder="john_tester1432"
-                      className="logo-user without-logo"
-                    />
-                  </Form.Item>
 									
                   <Form.Item
                     label="Email"
@@ -145,16 +132,7 @@ const Profile = () => {
                       className="logo-user without-logo"
                     />
                   </Form.Item>
-									<Form.Item
-                    label="Level"
-                    name="level"
-                    colon=""
-                  >
-                    <Input
-                      placeholder="Senior engineer"
-                      className="logo-user without-logo"
-                    />
-                  </Form.Item>
+
 									<Form.Item
                     label="Company Name"
                     name="companyName"
