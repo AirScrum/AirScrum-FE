@@ -66,3 +66,10 @@
     background: none !important;
     padding-left: 10px !important;
 }
+
+.wrap-width{
+	width: fit-content !important;
+	border: none;
+	margin-left: 0;
+	padding-left: 0 !important;
+}

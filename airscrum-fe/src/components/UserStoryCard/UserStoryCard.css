@@ -16,7 +16,9 @@
 .story-logo{
     width: 30px;
     margin-left: 5px;
+    transition: 0.8s all;
 }
+
 
 .story-title{
     display: inline;
@@ -38,10 +40,12 @@
 .story-logo-margin{
     width: 25px;
     margin-right: 10px;
+    transition: 0.8s all;
 }
 
 .story-logo-margin:hover{
     cursor: pointer;
+    width: 27px;
 }
 
 
