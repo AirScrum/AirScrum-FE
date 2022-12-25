@@ -61,7 +61,7 @@ function UserStory(props) {
               okButtonProps={{ className: "ok-btn-modal" }}
               cancelButtonProps={{ className: "cancel-btn-modal" }}
             >
-              <PopUpUserStoryDetails storyid={props.storyid} storytitle={props.storytitle} description={props.description} acceptance={props.acceptance} effort={props.effort} priority={props.priority}/>
+              <PopUpUserStoryDetails storyid={props.storyid} storytitle={props.storytitle} description={props.description} acceptance={props.acceptance} effort={props.effort} priority={props.priority} status={props.status}/>
             </Modal>
           </div>
         </div>

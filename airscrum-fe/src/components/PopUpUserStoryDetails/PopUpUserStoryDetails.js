@@ -19,7 +19,7 @@ const PopUpUserStoryDetail = (props) => {
           colon=""
         >
           <Input
-            placeholder="3 story points"
+            placeholder="Login"
             className="logo-user without-logo story-title wrap-width"
             defaultValue={props.storytitle}
           />
@@ -39,6 +39,19 @@ const PopUpUserStoryDetail = (props) => {
             maxLength={200}
             className="logo-user without-logo"
             defaultValue={props.description}
+          />
+        </Form.Item>
+
+        <Form.Item
+          label="Status"
+          name="status"
+          className="popup-label"
+          colon=""
+        >
+          <Input
+            placeholder="To do"
+            className="logo-user without-logo"
+            defaultValue={props.status}
           />
         </Form.Item>
 
