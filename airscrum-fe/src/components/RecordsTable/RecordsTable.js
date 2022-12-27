@@ -1,5 +1,27 @@
 import { Badge, Space, Table, Tag } from 'antd';
+import PopUpUserStoryDetail from '../PopUpUserStoryDetails/PopUpUserStoryDetails';
+import { Modal } from "antd";
+import { useState } from 'react';
 const RecordsTable = () => {
+  const [showPopUserStoryEdit, setShowPopUserStoryEdit] = useState(false)
+  const [editUserStoryInput, setEditUserStoryInput] = useState({})
+
+  const handleOk = () => {
+    /**
+     * TODO Update the user stories data using its ID.
+     */
+    setShowPopUserStoryEdit(false)
+  };
+
+  const handleCancel = () => {
+    setShowPopUserStoryEdit(false);
+  };
+
+  const onEditButtonClick = (record) => {
+    setEditUserStoryInput({ ...record })
+    setShowPopUserStoryEdit(true)
+
+  }
   const expandedRowRender = () => {
     const nestedColumns = [
       {
@@ -9,29 +31,29 @@ const RecordsTable = () => {
       },
       {
         title: 'Title',
-        dataIndex: 'userStoryTitle',
-        key: 'userStoryTitle',
+        dataIndex: 'title',
+        key: 'title',
       },
       {
         title: 'Priority',
-        dataIndex: 'userStoryPriority',
-        key: 'userStoryPriority',
-        render:(_,{priority})=>{
-          var color='green'
-          if(priority==='High'){
-            color='volcano'
+        dataIndex: 'priority',
+        key: 'priority',
+        render: (_, { priority }) => {
+          var color = 'green'
+          if (priority === 'High') {
+            color = 'volcano'
           }
-          return(
+          return (
             <Tag color={color} key={priority}>
-            {priority.toUpperCase()}
-          </Tag>
+              {priority.toUpperCase()}
+            </Tag>
           )
         }
       },
       {
         title: 'Status',
         key: 'status',
-        render: (_,{status}) => (
+        render: (_, { status }) => (
           <span>
             <Badge status="success" />
             <span className='ps-2'>{status}</span>
@@ -39,21 +61,28 @@ const RecordsTable = () => {
         ),
       },
       {
-        title: 'Owner',
-        dataIndex: 'owner',
-        key: 'owner',
+        title: 'Effort',
+        dataIndex: 'effort',
+        key: 'effort'
+      },
+      {
+        title: 'Acceptance Criteria',
+        dataIndex: 'criteria',
+        key: 'criteria',
+      },
+      {
+        title: 'Description',
+        dataIndex: 'description',
+        key: 'description',
       },
       {
         title: 'Action',
         dataIndex: 'operation',
         key: 'operation',
-        render: (_,record) => (
+        render: (_, record) => (
           <Space size="middle">
-            {/**
-             * TODO onClick, open PopUpUserStoryModal
-             */}
-            <a>Edit</a>
-        </Space>
+            <a onClick={()=>onEditButtonClick(record)}>Edit</a>
+          </Space>
         ),
       },
     ];
@@ -61,9 +90,12 @@ const RecordsTable = () => {
     for (let i = 0; i < 3; ++i) {
       userStoriesData.push({
         key: i.toString(),
-        userStoryTitle: 'Login Functionality',
+        title: 'Login Functionality',
         priority: 'High',
         status: 'Finished',
+        description:'As I user, I want to be able to login',
+        criteria:'Logged in to the system',
+        effort:'3 User Story points'
       });
     }
     return <Table columns={nestedColumns} dataSource={userStoriesData} pagination={false} />;
@@ -74,9 +106,9 @@ const RecordsTable = () => {
        * TODO Either change this to id or keep it
        * Make sure how it is retrieved from the server.
        */
-      title:'id',
-      dataIndex:'key',
-      key:'key'
+      title: 'id',
+      dataIndex: 'key',
+      key: 'key'
     }
     ,
     {
@@ -116,6 +148,24 @@ const RecordsTable = () => {
   }
   return (
     <>
+      <Modal
+        title="User Story Update"
+        open={showPopUserStoryEdit}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        okButtonProps={{ className: "ok-btn-modal" }}
+        cancelButtonProps={{ className: "cancel-btn-modal" }}
+      >
+        <PopUpUserStoryDetail
+          description={editUserStoryInput.description}
+          storyid={editUserStoryInput.id}
+          storytitle={editUserStoryInput.title}
+          status={editUserStoryInput.status}
+          acceptance={editUserStoryInput.criteria}
+          effort={editUserStoryInput.effort}
+          priority={editUserStoryInput.priority}
+        />
+      </Modal>
       <Table
         columns={columns}
         expandable={{

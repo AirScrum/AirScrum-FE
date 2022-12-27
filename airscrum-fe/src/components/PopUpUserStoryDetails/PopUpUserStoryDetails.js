@@ -3,6 +3,15 @@ import { Form, Input } from "antd";
 const { TextArea } = Input;
 
 const PopUpUserStoryDetail = (props) => {
+  const {
+    storyid,
+    storytitle,
+    description,
+    status,
+    acceptance,
+    effort,
+    priority
+  } = props;
   return (
     <div className="story-detail-container">
       <Form
@@ -13,7 +22,7 @@ const PopUpUserStoryDetail = (props) => {
         layout="vertical"
       >
         <div className="header-modal">
-          <span className="story-id">{props.storyid}</span>
+          <span className="story-id">{storyid}</span>
           <Form.Item
           name="title"
           colon=""
@@ -21,7 +30,7 @@ const PopUpUserStoryDetail = (props) => {
           <Input
             placeholder="Login"
             className="logo-user without-logo story-title wrap-width"
-            defaultValue={props.storytitle}
+            defaultValue={storytitle}
           />
         </Form.Item>
         </div>
@@ -38,7 +47,7 @@ const PopUpUserStoryDetail = (props) => {
             placeholder="As a user I want to be able to login to the system, by using email and password"
             maxLength={200}
             className="logo-user without-logo"
-            defaultValue={props.description}
+            defaultValue={description}
           />
         </Form.Item>
 
@@ -51,7 +60,7 @@ const PopUpUserStoryDetail = (props) => {
           <Input
             placeholder="To do"
             className="logo-user without-logo"
-            defaultValue={props.status}
+            defaultValue={status}
           />
         </Form.Item>
 
@@ -66,7 +75,7 @@ const PopUpUserStoryDetail = (props) => {
             placeholder="If the user's login failed, the user should be shown an error message showing why it is rejected"
             maxLength={200}
             className="logo-user without-logo"
-            defaultValue={props.acceptance}
+            defaultValue={acceptance}
           />
         </Form.Item>
 
@@ -79,7 +88,7 @@ const PopUpUserStoryDetail = (props) => {
           <Input
             placeholder="3 story points"
             className="logo-user without-logo"
-            defaultValue={props.effort}
+            defaultValue={effort}
           />
         </Form.Item>
 
@@ -92,7 +101,7 @@ const PopUpUserStoryDetail = (props) => {
           <Input
             placeholder="High"
             className="logo-user without-logo"
-            defaultValue={props.priority}
+            defaultValue={priority}
           />
         </Form.Item>
       </Form>
