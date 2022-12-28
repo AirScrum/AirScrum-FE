@@ -49,8 +49,13 @@ const FooterBar = ()=>{
                             </Link>
                         </ListGroupItem>
                         <ListGroupItem>
-                            <Link to={"/Upload"}>
+                            <Link to={"/upload"}>
                                 {"Upload"}
+                            </Link>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                            <Link to={"/history"}>
+                                {"History"}
                             </Link>
                         </ListGroupItem>
                     </ListGroup>
