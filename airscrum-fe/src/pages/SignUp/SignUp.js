@@ -58,7 +58,6 @@ const SignUp = ()=>{
                     <Form.Item
                         label="Birth Date"
                         name="birthdate"
-                        rules={[{ required: true, message: 'Please enter the birth date' }]}
                         colon=""
                     >
                         <DatePicker className="logo-user birth-date" />
