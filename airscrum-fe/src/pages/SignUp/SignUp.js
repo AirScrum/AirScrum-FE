@@ -27,7 +27,7 @@ const SignUp = ()=>{
                         rules={[{ required: true, message: 'Please enter your name' }]}
                         colon=""
                     >
-                        <Input placeholder="John Smith"className="logo-user username-pic"/>
+                        <Input placeholder="John Smith"className="logo-user including-name-logo"/>
                     </Form.Item>
 
                     <Form.Item
@@ -36,7 +36,7 @@ const SignUp = ()=>{
                         rules={[{ required: true, message: 'Please enter the email' }]}
                         colon=""
                     >
-                        <Input placeholder="test123@gmail.com"className="logo-user"/>
+                        <Input placeholder="test123@gmail.com"className="logo-user including-user-logo"/>
                     </Form.Item>
                     <Form.Item
                         label="Password"

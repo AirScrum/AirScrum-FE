@@ -77,7 +77,7 @@ const FooterBar = ()=>{
                         rules={[{ required: true, message: 'Please enter the email' }]}
                         colon=""
                     >
-                        <Input placeholder="test123@gmail.com"className="logo-user"/>
+                        <Input placeholder="test123@gmail.com"className="logo-user including-user-logo"/>
                     </Form.Item>
                     <Form.Item
                         label="Message"
@@ -85,7 +85,7 @@ const FooterBar = ()=>{
                         rules={[{ required: true, message: 'Please enter your message here' }]}
                         colon=""
                     >
-                        <Input.TextArea placeholder="Enter your message here" className="logo-user"/>
+                        <Input.TextArea placeholder="Enter your message here" className="logo-user including-message-logo"/>
                     </Form.Item>
                     <Form.Item>
                         <Button type='primary' htmlType='submit'>Submit</Button>
