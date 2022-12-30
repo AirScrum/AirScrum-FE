@@ -10,19 +10,18 @@ import Upload from "./pages/Upload/Upload";
 import History from "./pages/History/History";
 
 function App() {
+
   return (
     <Router>
-      {<NavBar/>}
       <Routes>
-        <Route path="/*" element={<Home/>}/>
-        <Route path="/about" element={<About/>}/>
+        <Route path="/*" element={<div><NavBar/><Home/><Footer/></div>}/>
+        <Route path="/about" element={<div><NavBar/><About/><Footer/></div>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/profile" element={<div><NavBar/><Profile/><Footer/></div>}/>
         <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/upload" element={<Upload/>}/>
-        <Route path="/history" element={<History/>}/>
+        <Route path="/upload" element={<div><NavBar/><Upload/><Footer/></div>}/>
+        <Route path="/history" element={<div><NavBar/><History/><Footer/></div>}/>
       </Routes>
-      {<Footer/>}
     </Router>
   );
 }

@@ -8,6 +8,8 @@ const { Title } = Typography;
 
 const UploadFun = ()=>{
 
+    document.body.style = 'background: #ffffff !important;';
+
     const [fileList, setFileList] = useState([]);
     const [mode, setMode] = useState(false);
 	const [percent,setPercent] = useState(30);

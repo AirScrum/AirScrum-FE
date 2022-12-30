@@ -5,6 +5,9 @@ import MazenImg from "../../Assets/mazen.PNG";
 
 const { TextArea } = Input;
 const Profile = () => {
+
+  document.body.style = 'background: #ffffff !important;';
+  
   return (
     <div className="profile-container">
       <div className="blue-up-cont">

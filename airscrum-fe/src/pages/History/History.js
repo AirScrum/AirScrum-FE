@@ -4,6 +4,9 @@ import "./History.css"
 import RecordsTable from "../../components/RecordsTable/RecordsTable";
 const { Search } = Input;
 const History = () => {
+
+    document.body.style = 'background: #ffffff !important;';
+    
     const onSearch = ()=>{
         /**
          * TODO make GET request on the User Management Service

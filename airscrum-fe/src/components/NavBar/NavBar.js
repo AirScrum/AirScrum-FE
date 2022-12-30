@@ -1,14 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Anchor, Drawer, Button } from "antd";
 import Preview from "../../Assets/Air_scrum-removebg-preview.png";
 import MenuIcon from "../../Assets/icons8-menu-50.png";
 import "./NavBar.css";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login,logout } from "../../redux/userRedux";
 
 function NavBar() {
   const [visible, setVisible] = useState(false);
+  const [navLogin, setNavLogin] = useState("none");
+  const [navNotLogin, setNavNotLogin] = useState("none");
 
   const location = useLocation();
+
+  const { loginState } = useSelector((state) => state.loginState);
+  //const dispatch = useDispatch();
+
+
+  useEffect(()=>{
+    if(loginState){
+      setNavLogin("inline")
+      setNavNotLogin("none")
+    }
+    else{
+      setNavLogin("none")
+      setNavNotLogin("inline")
+    }
+	}, [loginState])
+  
 
   const showDrawer = () => {
     setVisible(true);
@@ -38,7 +58,22 @@ function NavBar() {
               Home
             </Link>
             <Link
+              to={"/login"}
+              style={{ display: navNotLogin }}
+              className={"nav-visible-title"}
+            >
+              Login
+            </Link>
+            <Link
+              to={"/signup"}
+              style={{ display: navNotLogin }}
+              className={"nav-visible-title"}
+            >
+              Sign up
+            </Link>
+            <Link
               to={"/upload"}
+              style={{ display: navLogin }}
               className={`${
                 location.pathname === "/upload"
                   ? "active-title"
@@ -49,6 +84,7 @@ function NavBar() {
             </Link>
             <Link
               to={"/about"}
+              style={{ display: navLogin }}
               className={`${
                 location.pathname === "/about"
                   ? "active-title"
@@ -59,6 +95,7 @@ function NavBar() {
             </Link>
             <Link
               to={"/profile"}
+              style={{ display: navLogin }}
               className={`${
                 location.pathname === "/profile"
                   ? "active-title"
@@ -69,6 +106,7 @@ function NavBar() {
             </Link>
             <Link
               to={"/history"}
+              style={{ display: navLogin }}
               className={`${
                 location.pathname === "/history"
                   ? "active-title"
@@ -77,7 +115,7 @@ function NavBar() {
             >
               History
             </Link>
-            <Link to={"/login"} className="logout nav-visible-title">
+            <Link to={"/login"} className="logout nav-visible-title" style={{ display: navLogin }}>
               Logout
             </Link>
           </Anchor>

@@ -5,6 +5,9 @@ import SetupBro from "../../Assets/Setup-rafiki.png";
 import {Container, Col, Row, Button} from "react-bootstrap"
 import "./Home.css";
 const Home = ()=>{
+
+    document.body.style = 'background: #ffffff !important;';
+    
     return (
         <>
         <Container fluid className="main-sky-color-background">

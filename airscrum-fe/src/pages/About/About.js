@@ -3,6 +3,9 @@ import "./About.css";
 import TeamCard from "../../components/TeamCard/TeamCard";
 import mazen from '../../Assets/mazen.PNG'
 const About = () => {
+
+  document.body.style = 'background: #ffffff !important;';
+
   return (
     <>
       <Container fluid className={"airscrum-history mb-5"}>
