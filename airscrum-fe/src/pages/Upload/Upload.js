@@ -84,6 +84,9 @@ const UploadFun = ()=>{
                 <UserStory storyid="927" storytitle="User Story Test title 5" description="As a user I want to be able to login to the system, by using email and password" acceptance="If the user's login failed, the user should be shown an error message showing why it is rejected" effort="3 story points" priority="Low" status="To do"/>
                 <UserStory storyid="928" storytitle="User Story Test title 6" description="As a user I want to be able to login to the system, by using email and password" acceptance="If the user's login failed, the user should be shown an error message showing why it is rejected" effort="3 story points" priority="Low" status="To do"/>
             </div>
+            <Button type="success" htmlType="submit" className="btn-confirm save-btn">
+                Add user story
+            </Button>
 			<Button type="success" htmlType="submit" className="btn-confirm save-btn">
                 Save Changes
             </Button>
