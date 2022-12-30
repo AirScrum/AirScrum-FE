@@ -16,6 +16,7 @@ const Home = ()=>{
                 </Col>
                 <Col sm={6} className="text-center">
                     <img alt="Flying Plane" src={FlyingImage} style={{width:"inherit"}}/>
+                    <a href="https://storyset.com/work" className="redirect" target="_blank">Work illustrations by Storyset</a>
                 </Col>
             </Row>
         </Container>
@@ -23,6 +24,7 @@ const Home = ()=>{
         <Row>
                 <Col sm={6} className="text-center my-5">
                     <img alt="SignUp Bro" style={{width:"inherit"}}src={SignUpBro}/>
+                    <a href="https://storyset.com/work" className="redirect" target="_blank">Work illustrations by Storyset</a>
                 </Col>
                 <Col id={"GetStarted-Container-Text"} sm={6} className="px-5">
                     <h2 className="main-text-color text-bold fw-bold">Create your account now!</h2>
@@ -43,6 +45,7 @@ const Home = ()=>{
                 </Col>
                 <Col sm={6} className="text-center">
                     <img alt="Upload Bro"  style={{width:"inherit"}} src={UploadBro}/>
+                    <a href="https://storyset.com/work" className="redirect" target="_blank">Work illustrations by Storyset</a>
                 </Col>
             </Row>
         </Container>
@@ -50,6 +53,7 @@ const Home = ()=>{
         <Row>
                 <Col sm={6} className="text-center my-5">
                     <img alt="SignUp Bro" style={{width:"inherit"}}src={SetupBro}/>
+                    <a href="https://storyset.com/work" className="redirect" target="_blank">Work illustrations by Storyset</a>
                 </Col>
                 <Col id={"GetStarted-Container-Text"} sm={6} className="px-5">
                     <h2 className="main-text-color text-bold fw-bold">Manage your generated<br/> User Stories!</h2>

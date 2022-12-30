@@ -9,7 +9,7 @@ const SignUp = ()=>{
     return (
         <div className="card-sign card-up">
             <div className="left-card">
-                <a href="https://storyset.com/home" target="_blank" className="redirect" rel="noreferrer"><div className="overlay"></div></a>
+                <div className="overlay"><a href="https://storyset.com/work" className="redirect" target="_blank">Work illustrations by Storyset</a></div>
             </div>
             <div className="right-card">
                 <h1 className="title">Register</h1>
