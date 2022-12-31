@@ -1,10 +1,26 @@
 import "./SignUp.css"
 import { Form, Button, Input,Checkbox, DatePicker } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { login,logout } from "../../redux/userRedux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = ()=>{
 
     document.body.style = 'background: #CBC3E3 !important;';
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    dispatch(logout())
+
+    const signIn = () => {
+        navigate('/login');
+    };
+
+    const handleSubmit = (values) => {
+        navigate('/login');
+    }
 
     return (
         <div className="card-sign card-up">
@@ -17,7 +33,7 @@ const SignUp = ()=>{
                 <Form
                 name="basicform"
                 onFinishFailed={() => alert('Failed to submit')}
-                onFinish={() => alert('Form Submitted')}
+                onFinish={handleSubmit}
                 initialValues={{ remember: true }}
                 layout="vertical"
                 >
@@ -48,7 +64,7 @@ const SignUp = ()=>{
                     </Form.Item>
                     <Form.Item
                         label="Confirm Password"
-                        name="password"
+                        name="confirmpassword"
                         rules={[{ required: true, message: 'Please re-enter the password' }]}
                         colon=""
                     >
@@ -62,9 +78,9 @@ const SignUp = ()=>{
                     >
                         <DatePicker className="logo-user birth-date" />
                     </Form.Item>
-                    <Form.Item name="agree" valuePropName="checked" className="remember">
+                    <Form.Item name="agree" valuePropName="checked" className="remember" rules={[{ required: true, message: 'Please agree to our terms and conditions' }]}>
                                 <Checkbox>I agree to all of the terms and conditions</Checkbox>
-                            </Form.Item>
+                    </Form.Item>
                     
                     <Form.Item>
                         <Button type="success" htmlType="submit" className="btn-confirm">
@@ -73,7 +89,7 @@ const SignUp = ()=>{
                     </Form.Item>
                     
                 </Form>
-                <span className="not-registered">Already have an account? </span><span className="create">Sign in</span>
+                <span className="not-registered">Already have an account? </span><span className="create"  onClick={signIn}>Sign in</span>
             </div>
         </div>
     )

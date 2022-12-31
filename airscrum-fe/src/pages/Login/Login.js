@@ -1,13 +1,53 @@
 import "./Login.css"
-import { Form, Button, Input,Checkbox, Row,Col } from 'antd';
+import { Form, Button, Input,Checkbox, Row,Col,message } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login,logout } from "../../redux/userRedux";
 
 const Login = ()=>{
 
     document.body.style = 'background: #CBC3E3 !important;';
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [messageApi, contextHolder] = message.useMessage();
+
+    dispatch(logout())
+
+    const handleSubmit = (values) => {
+        const email = values.email
+        const password = values.password
+        if(email ==="admin@gmail.com" && password==="admin"){
+            dispatch(login())
+            navigate('/');
+        }
+        else{
+            errorEmail()
+        }
+    }
+
+    const errorEmail = () => {
+        messageApi.open({
+            type: 'error',
+            content: 'Email does not exist in our system',
+        });
+    };
+
+    const errorPassword = () => {
+        messageApi.open({
+            type: 'error',
+            content: 'Incorrect password',
+        });
+    };
+
+    const signUp = () => {
+        navigate('/signup');
+    };
+
     return (
         <div className="card-sign card-in">
+            {contextHolder}
             <div className="left-card">
             <div className="overlay" id="in"><a href="https://storyset.com/work" className="redirect" target="_blank">Work illustrations by Storyset</a></div>
             </div>
@@ -22,14 +62,14 @@ const Login = ()=>{
                 <Form
                 name="basicform"
                 onFinishFailed={() => alert('Failed to submit')}
-                onFinish={() => alert('Form Submitted')}
+                onFinish={handleSubmit}
                 initialValues={{ remember: true }}
                 layout="vertical"
                 >
                     <Form.Item
                         label="Email"
                         name="email"
-                        rules={[{ required: true, message: 'Please enter the email' }]}
+                        rules={[{ required: true, message: 'Please enter the email' },{type: 'email', message: 'The input is not valid E-mail!'}]}
                         colon=""
                     >
                         <Input placeholder="test123@gmail.com"className="logo-user including-user-logo"/>
@@ -58,7 +98,7 @@ const Login = ()=>{
                         </Button>
                     </Form.Item>
                 </Form>
-                <span className="not-registered">Not registered yet? </span><span className="create">Create an Account</span>
+                <span className="not-registered">Not registered yet? </span><span className="create" onClick={signUp}>Create an Account</span>
             </div>
         </div>
     )

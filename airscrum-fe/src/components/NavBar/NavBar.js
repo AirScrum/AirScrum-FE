@@ -7,10 +7,12 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login,logout } from "../../redux/userRedux";
 
+
 function NavBar() {
   const [visible, setVisible] = useState(false);
   const [navLogin, setNavLogin] = useState("none");
   const [navNotLogin, setNavNotLogin] = useState("none");
+  const dispatch = useDispatch();
 
   const location = useLocation();
 
