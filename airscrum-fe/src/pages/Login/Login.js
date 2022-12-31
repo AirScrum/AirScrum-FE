@@ -72,7 +72,7 @@ const Login = ()=>{
                         rules={[{ required: true, message: 'Please enter the email' },{type: 'email', message: 'The input is not valid E-mail!'}]}
                         colon=""
                     >
-                        <Input placeholder="test123@gmail.com"className="logo-user including-user-logo"/>
+                        <Input placeholder="test123@gmail.com" className="logo-user including-user-logo"/>
                     </Form.Item>
                     <Form.Item
                         label="Password"

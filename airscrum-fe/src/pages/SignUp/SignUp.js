@@ -49,7 +49,7 @@ const SignUp = ()=>{
                     <Form.Item
                         label="Email"
                         name="email"
-                        rules={[{ required: true, message: 'Please enter the email' }]}
+                        rules={[{ required: true, message: 'Please enter the email' },{type: 'email', message: 'The input is not valid E-mail!'}]}
                         colon=""
                     >
                         <Input placeholder="test123@gmail.com"className="logo-user including-user-logo"/>
