@@ -4,30 +4,33 @@ import Preview from "../../Assets/Air_scrum-removebg-preview.png";
 import MenuIcon from "../../Assets/icons8-menu-50.png";
 import "./NavBar.css";
 import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { login,logout } from "../../redux/userRedux";
+import { useSelector } from "react-redux";
 
 
 function NavBar() {
   const [visible, setVisible] = useState(false);
   const [navLogin, setNavLogin] = useState("none");
   const [navNotLogin, setNavNotLogin] = useState("none");
-  const dispatch = useDispatch();
+  const [navMobileLogin, setMobileNavLogin] = useState("none");
+  const [navMobileNotLogin, setMobileNavNotLogin] = useState("none");
 
   const location = useLocation();
 
   const { loginState } = useSelector((state) => state.loginState);
-  //const dispatch = useDispatch();
 
 
   useEffect(()=>{
     if(loginState){
       setNavLogin("inline")
+      setMobileNavLogin("block")
       setNavNotLogin("none")
+      setMobileNavNotLogin("none")
     }
     else{
+      setMobileNavLogin("none")
       setNavLogin("none")
       setNavNotLogin("inline")
+      setMobileNavNotLogin("block")
     }
 	}, [loginState])
   
@@ -145,6 +148,7 @@ function NavBar() {
               </Link>
               <Link
                 to={"/upload"}
+                style={{ display: navMobileLogin }}
                 className={`${
                   location.pathname === "/upload"
                     ? "active-title mobile-size"
@@ -155,6 +159,7 @@ function NavBar() {
               </Link>
               <Link
                 to={"/about"}
+                style={{ display: navMobileLogin }}
                 className={`${
                   location.pathname === "/about"
                     ? "active-title mobile-size"
@@ -165,6 +170,7 @@ function NavBar() {
               </Link>
               <Link
                 to={"/profile"}
+                style={{ display: navMobileLogin }}
                 className={`${
                   location.pathname === "/profile"
                     ? "active-title mobile-size"
@@ -175,9 +181,31 @@ function NavBar() {
               </Link>
               <Link
                 to={"/login"}
+                style={{ display: navMobileLogin }}
                 className="logout nav-visible-title mobile-size"
               >
                 Logout
+              </Link>
+              <Link
+                to={"/login"}
+                style={{ display: navMobileNotLogin }}
+                className={`${
+                  location.pathname === "/upload"
+                    ? "active-title mobile-size"
+                    : "nav-visible-title mobile-size"
+                }`}
+              >
+                Login
+              </Link><Link
+                to={"/signup"}
+                style={{ display: navMobileNotLogin }}
+                className={`${
+                  location.pathname === "/upload"
+                    ? "active-title mobile-size"
+                    : "nav-visible-title mobile-size"
+                }`}
+              >
+                Sign up
               </Link>
             </Anchor>
           </Drawer>

@@ -1,11 +1,29 @@
 import 'rc-footer/assets/index.css';
 import Logo from "../../Assets/Air_scrum-removebg-preview 1.png"
 import {Container, ListGroup, ListGroupItem,  Row,Col} from "react-bootstrap"
+import React, { useState, useEffect } from "react";
 import { Button, Form, Input } from 'antd';
+import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import "./Footer.css"
 const FooterBar = ()=>{
+
+    const [footLogin, setFootLogin] = useState("none");
+    const [footNotLogin, setFootNotLogin] = useState("none");
+    const { loginState } = useSelector((state) => state.loginState);
+
+    useEffect(()=>{
+        if(loginState){
+            setFootLogin("block")
+            setFootNotLogin("none")
+        }
+        else{
+            setFootLogin("none")
+            setFootNotLogin("block")
+        }
+        }, [loginState])
+
     var currentYear = new Date().getFullYear()
     return (
         <footer>
@@ -34,30 +52,31 @@ const FooterBar = ()=>{
                             </Link>
                         </ListGroupItem>
                         <ListGroupItem>
-                            <Link to={"/about"}>
+                            <Link to={"/about"} style={{ display: footLogin }}>
                                 {"About"}
                             </Link>
                         </ListGroupItem>
                         <ListGroupItem>
-                            <Link to={"/login"}>
-                                {"Login"}
-                            </Link>
-                        </ListGroupItem>
-                        <ListGroupItem>
-                            <Link to={"/signup"}>
-                                {"Sign Up"}
-                            </Link>
-                        </ListGroupItem>
-                        <ListGroupItem>
-                            <Link to={"/upload"}>
+                            <Link to={"/upload"} style={{ display: footLogin }}>
                                 {"Upload"}
                             </Link>
                         </ListGroupItem>
                         <ListGroupItem>
-                            <Link to={"/history"}>
+                            <Link to={"/history"} style={{ display: footLogin }}>
                                 {"History"}
                             </Link>
                         </ListGroupItem>
+                        <ListGroupItem>
+                            <Link to={"/login"} style={{ display: footNotLogin }}>
+                                {"Login"}
+                            </Link>
+                        </ListGroupItem>
+                        <ListGroupItem>
+                            <Link to={"/signup"} style={{ display: footNotLogin }}>
+                                {"Sign Up"}
+                            </Link>
+                        </ListGroupItem>
+                        
                     </ListGroup>
                 </Col>
                 <Col sm={4} md={4}>
