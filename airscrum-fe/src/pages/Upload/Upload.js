@@ -21,7 +21,7 @@ const UploadFun = ()=>{
         beforeUpload: (file, filesArray) => {
             let count = 0;
             let files = filesArray.filter((file) => {
-                const isPNG = file.type === 'image/png';
+                const isPNG = true;
                 !isPNG && count++;
                 return isPNG;
             });
@@ -64,7 +64,7 @@ const UploadFun = ()=>{
         <div className="upload-cont">
             <img alt="Files sent" src={FilesSent} className="upload-img"/>
             <a href="https://storyset.com/work" className="redirect" target="_blank">Work illustrations by Storyset</a>
-            <Upload {...uploadProps}>
+            <Upload {...uploadProps} maxCount={1} listType="audio" accept="audio/mp3">
                 <Button icon={<UploadOutlined/>} className="btn-confirm upload-btn" >Upload audio</Button>
             </Upload>
 
