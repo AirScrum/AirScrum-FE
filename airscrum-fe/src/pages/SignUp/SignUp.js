@@ -19,7 +19,7 @@ const SignUp = ()=>{
     };
 
     const handleSubmit = (values) => {
-        navigate('/login');
+        navigate('/login', {state: { emailTemp: values.email, passTemp: values.password}});
     }
 
     return (

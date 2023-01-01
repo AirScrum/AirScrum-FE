@@ -2,7 +2,7 @@ import "./Login.css"
 import { Form, Button, Input,Checkbox, Row,Col,message } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation  } from "react-router-dom";
 import { login,logout } from "../../redux/userRedux";
 
 const Login = ()=>{
@@ -12,6 +12,7 @@ const Login = ()=>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [messageApi, contextHolder] = message.useMessage();
+    const { state } = useLocation();
 
     dispatch(logout())
 
@@ -23,7 +24,19 @@ const Login = ()=>{
             navigate('/');
         }
         else{
-            errorEmail()
+            if(state !==null ){
+                
+                if(email ===state.emailTemp && password ===state.passTemp){
+                    dispatch(login())
+                    navigate('/');
+                }
+                else{
+                    errorEmail()
+                }
+            }
+            else{
+                errorEmail()
+            }
         }
     }
 
