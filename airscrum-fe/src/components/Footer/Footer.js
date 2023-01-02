@@ -52,11 +52,6 @@ const FooterBar = ()=>{
                             </Link>
                         </ListGroupItem>
                         <ListGroupItem>
-                            <Link to={"/about"} style={{ display: footLogin }}>
-                                {"About"}
-                            </Link>
-                        </ListGroupItem>
-                        <ListGroupItem>
                             <Link to={"/upload"} style={{ display: footLogin }}>
                                 {"Upload"}
                             </Link>
@@ -76,7 +71,11 @@ const FooterBar = ()=>{
                                 {"Sign Up"}
                             </Link>
                         </ListGroupItem>
-                        
+                        <ListGroupItem>
+                            <Link to={"/about"}>
+                                {"About Us"}
+                            </Link>
+                        </ListGroupItem>
                     </ListGroup>
                 </Col>
                 <Col sm={4} md={4}>

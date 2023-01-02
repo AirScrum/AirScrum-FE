@@ -89,7 +89,6 @@ function NavBar() {
             </Link>
             <Link
               to={"/about"}
-              style={{ display: navLogin }}
               className={`${
                 location.pathname === "/about"
                   ? "active-title"
@@ -158,17 +157,6 @@ function NavBar() {
                 Upload
               </Link>
               <Link
-                to={"/about"}
-                style={{ display: navMobileLogin }}
-                className={`${
-                  location.pathname === "/about"
-                    ? "active-title mobile-size"
-                    : "nav-visible-title mobile-size"
-                }`}
-              >
-                About Us
-              </Link>
-              <Link
                 to={"/profile"}
                 style={{ display: navMobileLogin }}
                 className={`${
@@ -196,7 +184,8 @@ function NavBar() {
                 }`}
               >
                 Login
-              </Link><Link
+              </Link>
+              <Link
                 to={"/signup"}
                 style={{ display: navMobileNotLogin }}
                 className={`${
@@ -206,6 +195,16 @@ function NavBar() {
                 }`}
               >
                 Sign up
+              </Link>
+              <Link
+                to={"/about"}
+                className={`${
+                  location.pathname === "/about"
+                    ? "active-title mobile-size"
+                    : "nav-visible-title mobile-size"
+                }`}
+              >
+                About Us
               </Link>
             </Anchor>
           </Drawer>
