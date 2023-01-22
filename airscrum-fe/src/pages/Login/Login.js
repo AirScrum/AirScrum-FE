@@ -43,7 +43,7 @@ const Login = ()=>{
     const errorEmail = () => {
         messageApi.open({
             type: 'error',
-            content: 'Email does not exist in our system',
+            content: 'Email/Password does not exist in our system',
         });
     };
 
