@@ -21,13 +21,12 @@ const UploadFun = () => {
     headers: {
       authorization: "authorization-text",
     },
+    beforeUpload: (file) => {
+      controlProgressBar();
+    },
     onChange(info) {
-      if (info.file.status !== "uploading") {
-        //console.log(info.file, info.fileList);
-      }
       if (info.file.status === "done") {
         message.success(`${info.file.name} file uploaded successfully`);
-        controlProgressBar();
         loadData(info.file.response.data);
       } else if (info.file.status === "error") {
         message.error(`${info.file.name} file upload failed.`);
@@ -48,8 +47,11 @@ const UploadFun = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => setPercent(percent + 10), 3000);
-    if (percent == 100) {
+    var interval =0
+    if(percent>=0 && percent <= 100 && visibleElements === "block"){
+      interval = setInterval(() => setPercent(percent + 10), 1000);
+    }
+    if (percent > 100) {
       return;
     }
     return () => {
