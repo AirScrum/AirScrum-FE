@@ -3,10 +3,29 @@ import SignUpBro from "../../Assets/Sign up-bro.png";
 import UploadBro from "../../Assets/Image upload-bro.png"
 import SetupBro from "../../Assets/Setup-rafiki.png";
 import {Container, Col, Row, Button} from "react-bootstrap"
+import { useEffect } from 'react'
+import axios from 'axios';
+import { useDispatch } from "react-redux";
+import { login,logout } from "../../redux/userRedux";
 import "./Home.css";
 const Home = ()=>{
 
     document.body.style = 'background: #ffffff !important;';
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        axios.get("http://localhost:4000/protected", {
+            headers: {
+                Authorization: token,
+            }
+        }).then(res => {
+            dispatch(login())
+        }).catch(err => {
+            dispatch(logout())
+        })
+    }, [])
     
     return (
         <>

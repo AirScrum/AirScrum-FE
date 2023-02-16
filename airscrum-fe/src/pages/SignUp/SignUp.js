@@ -1,9 +1,10 @@
 import "./SignUp.css"
 import { Form, Button, Input,Checkbox, DatePicker } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { login,logout } from "../../redux/userRedux";
+import { logout } from "../../redux/userRedux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const SignUp = ()=>{
 
@@ -19,7 +20,16 @@ const SignUp = ()=>{
     };
 
     const handleSubmit = (values) => {
-        navigate('/login', {state: { emailTemp: values.email, passTemp: values.password}});
+
+        /**
+         * Validation  on data
+         */
+        axios.post("http://localhost:4000/register", { fullName: values.name, email:values.email, password:values.password, birthDate:JSON.stringify(values.birthdate).slice(0,11) }).then(user => {
+            console.log(user);
+            navigate('/login')
+        }).catch(err => {
+            console.log(err);
+        })
     }
 
     return (

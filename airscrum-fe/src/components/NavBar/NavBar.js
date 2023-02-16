@@ -5,6 +5,9 @@ import MenuIcon from "../../Assets/icons8-menu-50.png";
 import "./NavBar.css";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/userRedux";
 
 
 function NavBar() {
@@ -15,6 +18,8 @@ function NavBar() {
   const [navMobileNotLogin, setMobileNavNotLogin] = useState("none");
 
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { loginState } = useSelector((state) => state.loginState);
 
@@ -42,6 +47,12 @@ function NavBar() {
   const onClose = () => {
     setVisible(false);
   };
+
+  const logout2 = () => {
+    localStorage.clear();
+    dispatch(logout())
+    navigate('/login');
+};
 
   return (
     <div className="container-fluid navbar-color">
@@ -119,9 +130,9 @@ function NavBar() {
             >
               History
             </Link>
-            <Link to={"/login"} className="logout nav-visible-title" style={{ display: navLogin }}>
+            <button className="logout nav-visible-title" onClick={logout2} style={{ display: navLogin }}>
               Logout
-            </Link>
+            </button>
           </Anchor>
         </div>
         <div className="mobileVisible">
@@ -167,13 +178,14 @@ function NavBar() {
               >
                 Profile
               </Link>
-              <Link
-                to={"/login"}
+              <button
+                
                 style={{ display: navMobileLogin }}
+                onClick={logout2}
                 className="logout nav-visible-title mobile-size"
               >
                 Logout
-              </Link>
+              </button>
               <Link
                 to={"/login"}
                 style={{ display: navMobileNotLogin }}

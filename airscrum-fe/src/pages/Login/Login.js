@@ -2,8 +2,10 @@ import "./Login.css"
 import { Form, Button, Input,Checkbox, Row,Col,message } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { useDispatch } from "react-redux";
-import { useNavigate,useLocation  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react'
 import { login,logout } from "../../redux/userRedux";
+import axios from 'axios';
 
 const Login = ()=>{
 
@@ -12,11 +14,15 @@ const Login = ()=>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [messageApi, contextHolder] = message.useMessage();
-    const { state } = useLocation();
+
 
     dispatch(logout())
 
     const handleSubmit = (values) => {
+
+        /**
+         * Validation on data
+         */
         const email = values.email
         const password = values.password
         if(email ==="admin@gmail.com" && password==="admin"){
@@ -25,35 +31,27 @@ const Login = ()=>{
         }
         
         else{
-            if(state !==null ){
-                
-                if(email ===state.emailTemp && password ===state.passTemp){
-                    dispatch(login())
-                    navigate('/');
-                }
-                else{
-                    errorEmail()
-                }
+            axios.post("http://localhost:4000/login", { email:values.email, password:values.password }).then(user => {
+            console.log(user);
+            if(user.status === 200){
+                localStorage.setItem('token', user.data.token)
+                dispatch(login())
+                navigate('/')
             }
-            else{
-                errorEmail()
-            }
+        }).catch(err => {
+            console.log(err);
+            invalidData()
+        })
         }
     }
 
-    const errorEmail = () => {
+    const invalidData = () => {
         messageApi.open({
             type: 'error',
             content: 'Email/Password does not exist in our system',
         });
     };
 
-    const errorPassword = () => {
-        messageApi.open({
-            type: 'error',
-            content: 'Incorrect password',
-        });
-    };
 
     const signUp = () => {
         navigate('/signup');
