@@ -4,6 +4,7 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect } from 'react'
+import Cookies from 'js-cookie';
 import { login,logout } from "../../redux/userRedux";
 import axios from 'axios';
 
@@ -34,7 +35,8 @@ const Login = ()=>{
             axios.post("http://localhost:4000/login", { email:values.email, password:values.password }).then(user => {
             console.log(user);
             if(user.status === 200){
-                localStorage.setItem('token', user.data.token)
+                //localStorage.setItem('token', user.data.token)
+                Cookies.set('token', user.data.token);
                 dispatch(login())
                 navigate('/')
             }
@@ -52,6 +54,10 @@ const Login = ()=>{
         });
     };
 
+    const googleLogin = () => {
+        window.open("http://localhost:4000/auth/google", "_self");
+    };
+
 
     const signUp = () => {
         navigate('/signup');
@@ -65,7 +71,7 @@ const Login = ()=>{
             </div>
             <div className="right-card">
                 <h1 className="title">Login</h1>
-                <Button type="primary"><img src={require("../../Assets/icons8-google-48.png")} alt="google icon" className="google-logo"/>sign in with google</Button> <br />
+                <Button type="primary" onClick={googleLogin}><img src={require("../../Assets/icons8-google-48.png")} alt="google icon" className="google-logo"/>sign in with google</Button> <br />
                 <div className="middle-hr">
                     <span className="middle-text">
                         or sign in with E-mail

@@ -7,24 +7,43 @@ import { useEffect } from 'react'
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { login,logout } from "../../redux/userRedux";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 import "./Home.css";
+import { useSearchParams } from "react-router-dom";
+
+
 const Home = ()=>{
 
     document.body.style = 'background: #ffffff !important;';
 
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        var tokenTemp = searchParams.get("token")
+        if(tokenTemp !== null){
+            tokenTemp = "Bearer " +searchParams.get("token")
+            Cookies.set('token', tokenTemp);
+            navigate('/');
+        }
+        var token = Cookies.get('token');
+        // Check if he has logged in using google
+        
+        console.log(token)
         axios.get("http://localhost:4000/protected", {
             headers: {
                 Authorization: token,
             }
         }).then(res => {
+            console.log(res)
             dispatch(login())
         }).catch(err => {
+            console.log(err)
             dispatch(logout())
         })
+        
     }, [])
     
     return (

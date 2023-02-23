@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/userRedux";
+import Cookies from 'js-cookie';
 
 
 function NavBar() {
@@ -49,7 +50,7 @@ function NavBar() {
   };
 
   const logout2 = () => {
-    localStorage.clear();
+    Cookies.remove('token');
     dispatch(logout())
     navigate('/login');
 };
