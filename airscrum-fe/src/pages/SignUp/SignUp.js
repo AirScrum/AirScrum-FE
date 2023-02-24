@@ -30,7 +30,8 @@ const SignUp = ()=>{
         /**
          * Validation  on data
          */
-        axios.post("http://localhost:4000/register", { fullName: values.name, email:values.email, password:values.password, birthDate:JSON.stringify(values.birthdate).slice(0,11) }).then(user => {
+
+        axios.post("http://localhost:4000/register", { fullName: values.name, email:values.email, password:values.password, birthDate:JSON.stringify(values.birthdate).slice(1,11) }).then(user => {
             console.log(user);
             navigate('/login')
         }).catch(err => {
