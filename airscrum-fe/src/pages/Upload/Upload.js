@@ -4,7 +4,14 @@ import { Button, message, Upload, Progress, Typography } from "antd";
 import FilesSent from "../../Assets/Files sent-amico.png";
 import { UploadOutlined } from "@ant-design/icons";
 import UserStory from "../../components/UserStoryCard/UserStoryCard";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/userRedux";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+import axios from 'axios';
+
 const { Title } = Typography;
+
 
 const UploadFun = () => {
   document.body.style = "background: #ffffff !important;";
@@ -13,6 +20,8 @@ const UploadFun = () => {
   const [visibleElements, setVisibleElements] = useState("none");
   const [status, setStatus] = useState("active");
 	const [userStories, setUserStories] = useState([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const uploadProps = {
     name: "file",
@@ -47,6 +56,27 @@ const UploadFun = () => {
   };
 
   useEffect(() => {
+
+    var token = Cookies.get('token');
+    // Check if he has logged in using google
+    
+    console.log(token)
+    axios.get("http://localhost:4000/protected", {
+        headers: {
+            Authorization: token,
+        }
+    }).then(res => {
+        console.log(res)
+        
+    }).catch(err => {
+        console.log(err)
+        dispatch(logout())
+        navigate('/login')
+    })
+    
+}, [])
+
+  useEffect(() => {
     var interval =0
     if(percent>=0 && percent <= 100 && visibleElements === "block"){
       interval = setInterval(() => setPercent(percent + 10), 1000);
@@ -58,6 +88,8 @@ const UploadFun = () => {
       clearInterval(interval);
     };
   }, [percent]);
+
+  
 
   return (
     <div className="upload-cont">

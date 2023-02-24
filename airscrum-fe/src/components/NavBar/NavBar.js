@@ -196,18 +196,6 @@ function NavBar() {
                                 <></>
                             )}
                             {loginState ? (
-                                <>
-                                    <button
-                                        onClick={logout2}
-                                        className="logout nav-visible-title mobile-size"
-                                    >
-                                        Logout
-                                    </button>
-                                </>
-                            ) : (
-                                <></>
-                            )}
-                            {loginState ? (
                                 <></>
                             ) : (
                                 <>
@@ -243,6 +231,18 @@ function NavBar() {
                             >
                                 About Us
                             </Link>
+                            {loginState ? (
+                                <>
+                                    <button
+                                        onClick={logout2}
+                                        className="logout nav-visible-title mobile-size"
+                                    >
+                                        Logout
+                                    </button>
+                                </>
+                            ) : (
+                                <></>
+                            )}
                         </Anchor>
                     </Drawer>
                 </div>

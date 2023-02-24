@@ -2,10 +2,40 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Input } from "antd";
 import "./History.css"
 import RecordsTable from "../../components/RecordsTable/RecordsTable";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/userRedux";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+import axios from 'axios';
+
 const { Search } = Input;
 const History = () => {
 
     document.body.style = 'background: #ffffff !important;';
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+
+        var token = Cookies.get('token');
+        // Check if he has logged in using google
+        
+        console.log(token)
+        axios.get("http://localhost:4000/protected", {
+            headers: {
+                Authorization: token,
+            }
+        }).then(res => {
+            console.log(res)
+            
+        }).catch(err => {
+            console.log(err)
+            dispatch(logout())
+            navigate('/login')
+        })
+        
+    }, [])
     
     const onSearch = ()=>{
         /**

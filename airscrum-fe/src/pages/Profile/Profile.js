@@ -2,11 +2,40 @@ import "./Profile.css";
 import { Form, Button, Input, DatePicker, Avatar } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import MazenImg from "../../Assets/mazen.PNG";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/userRedux";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 const { TextArea } = Input;
 const Profile = () => {
 
   document.body.style = 'background: #ffffff !important;';
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+
+    var token = Cookies.get('token');
+    // Check if he has logged in using google
+    
+    console.log(token)
+    axios.get("http://localhost:4000/protected", {
+        headers: {
+            Authorization: token,
+        }
+    }).then(res => {
+        console.log(res)
+        
+    }).catch(err => {
+        console.log(err)
+        dispatch(logout())
+        navigate('/login')
+    })
+    
+}, [])
   
   return (
     <div className="profile-container">
