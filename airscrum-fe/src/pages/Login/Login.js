@@ -19,6 +19,10 @@ const Login = ()=>{
 
     dispatch(logout())
 
+    useEffect(() => {
+        Cookies.set('token', null);
+    }, [])
+
     const handleSubmit = (values) => {
 
         /**
@@ -35,7 +39,6 @@ const Login = ()=>{
             axios.post("http://localhost:4000/login", { email:values.email, password:values.password }).then(user => {
             console.log(user);
             if(user.status === 200){
-                //localStorage.setItem('token', user.data.token)
                 Cookies.set('token', user.data.token);
                 dispatch(login())
                 navigate('/')

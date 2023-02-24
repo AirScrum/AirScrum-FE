@@ -1,26 +1,14 @@
 import "rc-footer/assets/index.css";
 import Logo from "../../Assets/Air_scrum-removebg-preview 1.png";
 import { Container, ListGroup, ListGroupItem, Row, Col } from "react-bootstrap";
-import React, { useState, useEffect } from "react";
 import { Button, Form, Input } from "antd";
 import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import "./Footer.css";
 const FooterBar = () => {
-  const [footLogin, setFootLogin] = useState("none");
-  const [footNotLogin, setFootNotLogin] = useState("none");
-  const { loginState } = useSelector((state) => state.loginState);
 
-  useEffect(() => {
-    if (loginState) {
-      setFootLogin("block");
-      setFootNotLogin("none");
-    } else {
-      setFootLogin("none");
-      setFootNotLogin("block");
-    }
-  }, [loginState]);
+  const { loginState } = useSelector((state) => state.loginState);
 
   var currentYear = new Date().getFullYear();
   return (
@@ -45,6 +33,11 @@ const FooterBar = () => {
                   <ListGroupItem>
                     <Link to={"/upload"} style={{ display: "block" }}>
                       {"Upload"}
+                    </Link>
+                  </ListGroupItem>
+                  <ListGroupItem>
+                    <Link to={"/profile"} style={{ display: "block" }}>
+                      {"Profile"}
                     </Link>
                   </ListGroupItem>
                   <ListGroupItem>

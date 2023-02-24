@@ -4,6 +4,8 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { logout } from "../../redux/userRedux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react'
+import Cookies from 'js-cookie';
 import axios from 'axios';
 
 const SignUp = ()=>{
@@ -14,6 +16,10 @@ const SignUp = ()=>{
     const navigate = useNavigate();
 
     dispatch(logout())
+
+    useEffect(() => {
+        Cookies.set('token', null);
+    }, [])
 
     const signIn = () => {
         navigate('/login');
