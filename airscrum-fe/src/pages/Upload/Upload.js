@@ -25,7 +25,7 @@ const UploadFun = () => {
 
   const uploadProps = {
     name: "file",
-    action: "http://localhost:4000/userstories",
+    action: "http://localhost:4000/request/speech2text",
     method: "POST",
     headers: {
       authorization: "authorization-text",
