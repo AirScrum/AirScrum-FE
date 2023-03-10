@@ -33,4 +33,7 @@
 	opacity: 0.6;
 }
 
-
+.terms-cons{
+	color: var(--main-button-color);
+	font-weight: bold;
+}
