@@ -18,8 +18,8 @@ const UploadFun = () => {
 
   const [percent, setPercent] = useState(0);
   const [visibleElements, setVisibleElements] = useState("none");
-  const [status, setStatus] = useState("active");
-	const [userStories, setUserStories] = useState([]);
+  /*const [status, setStatus] = useState("active");
+	const [userStories, setUserStories] = useState([]);*/
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,15 +28,15 @@ const UploadFun = () => {
     action: "http://localhost:4000/request/speech2text",
     method: "POST",
     headers: {
-      authorization: "authorization-text",
+      authorization: Cookies.get('token'),
     },
-    beforeUpload: (file) => {
+    /*beforeUpload: (file) => {
       controlProgressBar();
-    },
+    },*/
     onChange(info) {
       if (info.file.status === "done") {
         message.success(`${info.file.name} file uploaded successfully`);
-        loadData(info.file.response.data);
+        //loadData(info.file.response.data);
       } else if (info.file.status === "error") {
         message.error(`${info.file.name} file upload failed.`);
       }
@@ -46,6 +46,7 @@ const UploadFun = () => {
 	}
   };
 
+  /*
   const controlProgressBar = () => {
     setVisibleElements("block");
     setPercent(10);
@@ -53,7 +54,7 @@ const UploadFun = () => {
 
   const loadData = (data) => {
 		setUserStories(data)
-  };
+  };*/
 
   useEffect(() => {
 
@@ -76,7 +77,7 @@ const UploadFun = () => {
     
 }, [])
 
-  useEffect(() => {
+  /*useEffect(() => {
     var interval =0
     if(percent>=0 && percent <= 100 && visibleElements === "block"){
       interval = setInterval(() => setPercent(percent + 10), 1000);
@@ -87,7 +88,7 @@ const UploadFun = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [percent]);
+  }, [percent]);*/
 
   
 
@@ -105,6 +106,7 @@ const UploadFun = () => {
 
       <span className="available">Available formats: mp3</span>
 
+      {/*
       <div style={{ display: visibleElements }}>
         <div className="progress-div">
           <Progress percent={percent} status={status} />
@@ -148,7 +150,7 @@ const UploadFun = () => {
         >
           Save Changes
         </Button>
-      </div>
+      </div>*/}
     </div>
   );
 };
