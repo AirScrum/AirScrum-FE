@@ -1,13 +1,13 @@
 import "./Profile.css";
-import { Form, Button, Input, DatePicker, Avatar } from "antd";
+import { Form, Button, Input, DatePicker, Avatar, message } from "antd";
 import MazenImg from "../../Assets/icons8-male-user-100.png";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { logout,login } from "../../redux/userRedux";
+import { logout, login } from "../../redux/userRedux";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import dayjs from 'dayjs';
-import 'dayjs/locale/fr'; 
+import dayjs from "dayjs";
+import "dayjs/locale/fr";
 import axios from "axios";
 
 const { TextArea } = Input;
@@ -18,28 +18,28 @@ const Profile = () => {
     const [userProfile, setUserProfile] = useState({});
     const [token, setToken] = useState(null);
     const [form] = Form.useForm();
+    const [messageApi, contextHolder] = message.useMessage();
 
     const onChangeAll = (inputs) => {
-
-      form.setFieldsValue({
-        email: `${inputs.email}`,
-        firstName: `${inputs.firstName}`,
-        lastName: `${inputs.lastName}`,
-        phoneNo: `${inputs.phoneNo}`,
-        birthdate: dayjs(inputs.birthdate).locale('fr'),
-        gender: `${inputs.gender}`,
-        title: `${inputs.title}`,
-        address: `${inputs.address}`,
-        bio: `${inputs.bio}`,
-  });
- };  
+        form.setFieldsValue({
+            email: `${inputs.email}`,
+            firstName: `${inputs.firstName}`,
+            lastName: `${inputs.lastName}`,
+            phoneNo: `${inputs.phoneNo}`,
+            birthdate: dayjs(inputs.birthdate).locale("fr"),
+            gender: `${inputs.gender}`,
+            title: `${inputs.title}`,
+            address: `${inputs.address}`,
+            bio: `${inputs.bio}`,
+        });
+    };
 
     useEffect(() => {
         var token = Cookies.get("token");
         // Check if he has logged in using google
 
         //console.log(token);
-        setToken(token)
+        setToken(token);
         axios
             .get("http://localhost:4000/protected", {
                 headers: {
@@ -47,7 +47,7 @@ const Profile = () => {
                 },
             })
             .then((res) => {
-                dispatch(login())
+                dispatch(login());
             })
             .catch((err) => {
                 console.log(err);
@@ -57,43 +57,94 @@ const Profile = () => {
     }, []);
 
     useEffect(() => {
-
         axios
-            .get('http://localhost:4000/profile',{
-              headers: {
-                  Authorization: token,
-              },
-          })
+            .get("http://localhost:4000/profile", {
+                headers: {
+                    Authorization: token,
+                },
+            })
             .then((response) => {
-              setUserProfile(response.data)
+                setUserProfile(response.data);
                 var space = response.data.fullname.indexOf(" ");
                 var firstName = response.data.fullname.substring(0, space);
                 var lastName = response.data.fullname.substring(space + 1);
-                var phoneNo = response.data.phoneNo === undefined ? '' : response.data.phoneNo;
-                var birthDate = response.data.birthDate === undefined ? '' : response.data.birthDate;
-                var gender = response.data.gender === undefined ? '' : response.data.gender;
-                var title = response.data.title === undefined ? '' : response.data.title;
-                var address = response.data.address === undefined ? '' : response.data.address;
-                var bio = response.data.bio === undefined ? '' : response.data.bio;
+                var phoneNo =
+                    response.data.phoneNo === undefined
+                        ? ""
+                        : response.data.phoneNo;
+                var birthDate =
+                    response.data.birthDate === undefined
+                        ? ""
+                        : response.data.birthDate;
+                var gender =
+                    response.data.gender === undefined
+                        ? ""
+                        : response.data.gender;
+                var title =
+                    response.data.title === undefined
+                        ? ""
+                        : response.data.title;
+                var address =
+                    response.data.address === undefined
+                        ? ""
+                        : response.data.address;
+                var bio =
+                    response.data.bio === undefined ? "" : response.data.bio;
                 onChangeAll({
-                  email: response.data.email,
-                  firstName: firstName,
-                  lastName: lastName,
-                  phoneNo: phoneNo,
-                  birthdate: birthDate,
-                  gender: gender,
-                  title: title,
-                  address: address,
-                  bio: bio,
-                })
+                    email: response.data.email,
+                    firstName: firstName,
+                    lastName: lastName,
+                    phoneNo: phoneNo,
+                    birthdate: birthDate,
+                    gender: gender,
+                    title: title,
+                    address: address,
+                    bio: bio,
+                });
             })
             .catch((error) => {
                 console.log(error);
             });
     }, [token]);
 
+    const handleSubmit = (values) => {
+        axios
+            .post(
+                "http://localhost:4000/profile",
+                {
+                    email: values.email,
+                    fullName: values.firstName + " " + values.lastName,
+                    birthDate: values.birthdate,
+                    phoneNo: values.phoneNo,
+                    gender: values.gender,
+                    title: values.title,
+                    address: values.address,
+                    bio: values.bio,
+                },
+                {
+                    headers: {
+                        Authorization: token,
+                    },
+                }
+            )
+            .then((user) => {
+                messageApi.open({
+                    type: "success",
+                    content: "Saved Successfully",
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+                messageApi.open({
+                  type: "error",
+                  content: "Something went wrong!",
+              });
+            });
+    };
+
     return (
         <div className="profile-container">
+            {contextHolder}
             <div className="blue-up-cont">
                 <div className="invisible">Profile</div>
             </div>
@@ -106,7 +157,9 @@ const Profile = () => {
                             src={MazenImg}
                             className="profile-img"
                         />
-                        <h1 className="title acc-title">{userProfile.fullname}</h1>
+                        <h1 className="title acc-title">
+                            {userProfile.fullname}
+                        </h1>
                         <hr className="name-seperator" />
                     </div>
                     <div className="second-left-container">
@@ -115,7 +168,7 @@ const Profile = () => {
                         <Form
                             name="basicform"
                             onFinishFailed={() => alert("Failed to submit")}
-                            onFinish={() => alert("Form Submitted")}
+                            onFinish={handleSubmit}
                             initialValues={{ remember: true }}
                             layout="vertical"
                             form={form}
@@ -192,7 +245,10 @@ const Profile = () => {
                                         name="birthdate"
                                         colon=""
                                     >
-                                        <DatePicker className="logo-user without-logo-birth" value={userProfile.birthdate}/>
+                                        <DatePicker
+                                            className="logo-user without-logo-birth"
+                                            value={userProfile.birthdate}
+                                        />
                                     </Form.Item>
                                     <Form.Item
                                         label="Gender"

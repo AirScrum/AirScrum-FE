@@ -21,7 +21,7 @@ const History = () => {
         var token = Cookies.get('token');
         // Check if he has logged in using google
         
-        console.log(token)
+        //console.log(token)
         axios.get("http://localhost:4000/protected", {
             headers: {
                 Authorization: token,

@@ -184,7 +184,7 @@ function NavBar() {
                                     <Link
                                         to={"/history"}
                                         className={`${
-                                            location.pathname === "/profile"
+                                            location.pathname === "/history"
                                                 ? "active-title mobile-size"
                                                 : "nav-visible-title mobile-size"
                                         }`}
