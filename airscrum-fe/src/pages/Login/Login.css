@@ -18,6 +18,20 @@
 	font-size: 17px;
 }
 
+.login-verification-cont{
+	width: 100%;
+	background-color: green;
+	color: whitesmoke;
+	text-align: center;
+	border-radius: 10px;
+	padding: 7px;
+	margin-bottom: 10px;
+}
+
+.login-verification-message{
+	font-size: 15px;
+}
+
 .ant-btn:hover{
 	border-color: var(--main-button-color) !important;
 	background-color: var(--light-grey) !important;

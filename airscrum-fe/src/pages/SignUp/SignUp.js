@@ -1,5 +1,5 @@
 import "./SignUp.css";
-import { Form, Button, Input, Checkbox, DatePicker, Modal } from "antd";
+import { Form, Button, Input, Checkbox, DatePicker, Modal, message } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { logout } from "../../redux/userRedux";
 import { useDispatch } from "react-redux";
@@ -14,6 +14,7 @@ const SignUp = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -48,15 +49,27 @@ const SignUp = () => {
             })
             .then((user) => {
                 console.log(user);
-                navigate("/login");
+                messageApi.open({
+                    type: 'warning',
+                    content: user.data.message,
+                });
+                setTimeout(function () {
+                    navigate("/login");
+                }, 3000);
+                
             })
             .catch((err) => {
                 console.log(err);
+                messageApi.open({
+                    type: 'warning',
+                    content: err.response.data.message,
+                });
             });
     };
 
     return (
         <div className="card-sign card-up">
+            {contextHolder}
             <div className="left-card">
                 <div className="overlay">
                     <a

@@ -8,6 +8,7 @@ import Profile from "./pages/Profile/Profile"
 import SignUp from "./pages/SignUp/SignUp";
 import Upload from "./pages/Upload/Upload";
 import History from "./pages/History/History";
+import EmailVerify from "./pages/EmailVerify/EmailVerify";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/upload" element={<div><NavBar/><Upload/><Footer/></div>}/>
         <Route path="/history" element={<div><NavBar/><History/><Footer/></div>}/>
+        <Route path="/users/:id/verify/:token" element={<EmailVerify/>}/>
       </Routes>
     </Router>
   );
