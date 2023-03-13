@@ -1,6 +1,6 @@
 import "./Profile.css";
 import { Form, Button, Input, DatePicker, Avatar, message } from "antd";
-import MazenImg from "../../Assets/icons8-male-user-100.png";
+import UserImg from "../../Assets/icons8-male-user-100.png";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { logout, login } from "../../redux/userRedux";
@@ -20,13 +20,16 @@ const Profile = () => {
     const [form] = Form.useForm();
     const [messageApi, contextHolder] = message.useMessage();
 
-    const onChangeAll = (inputs) => {
+    const setFormValues = (inputs) => {
         form.setFieldsValue({
             email: `${inputs.email}`,
             firstName: `${inputs.firstName}`,
             lastName: `${inputs.lastName}`,
             phoneNo: `${inputs.phoneNo}`,
-            birthdate: dayjs(inputs.birthdate).locale("fr"),
+            birthDate: `${inputs.birthDate}`
+                 === ""
+                    ? ""
+                    : dayjs(inputs.birthDate).locale("fr"),
             gender: `${inputs.gender}`,
             title: `${inputs.title}`,
             address: `${inputs.address}`,
@@ -64,42 +67,18 @@ const Profile = () => {
                 },
             })
             .then((response) => {
+                console.log(response.data);
                 setUserProfile(response.data);
-                var space = response.data.fullname.indexOf(" ");
-                var firstName = response.data.fullname.substring(0, space);
-                var lastName = response.data.fullname.substring(space + 1);
-                var phoneNo =
-                    response.data.phoneNo === undefined
-                        ? ""
-                        : response.data.phoneNo;
-                var birthDate =
-                    response.data.birthDate === undefined
-                        ? ""
-                        : response.data.birthDate;
-                var gender =
-                    response.data.gender === undefined
-                        ? ""
-                        : response.data.gender;
-                var title =
-                    response.data.title === undefined
-                        ? ""
-                        : response.data.title;
-                var address =
-                    response.data.address === undefined
-                        ? ""
-                        : response.data.address;
-                var bio =
-                    response.data.bio === undefined ? "" : response.data.bio;
-                onChangeAll({
+                setFormValues({
                     email: response.data.email,
-                    firstName: firstName,
-                    lastName: lastName,
-                    phoneNo: phoneNo,
-                    birthdate: birthDate,
-                    gender: gender,
-                    title: title,
-                    address: address,
-                    bio: bio,
+                    firstName: response.data.firstName,
+                    lastName: response.data.lastName,
+                    phoneNo: response.data.phoneNo,
+                    birthDate: response.data.birthDate,
+                    gender: response.data.gender,
+                    title: response.data.title,
+                    address: response.data.address,
+                    bio: response.data.bio,
                 });
             })
             .catch((error) => {
@@ -113,8 +92,9 @@ const Profile = () => {
                 "http://localhost:4000/profile",
                 {
                     email: values.email,
-                    fullName: values.firstName + " " + values.lastName,
-                    birthDate: values.birthdate,
+                    firstName: values.firstName,
+                    lastName: values.lastName,
+                    birthDate: values.birthDate,
                     phoneNo: values.phoneNo,
                     gender: values.gender,
                     title: values.title,
@@ -136,9 +116,9 @@ const Profile = () => {
             .catch((err) => {
                 console.log(err);
                 messageApi.open({
-                  type: "error",
-                  content: "Something went wrong!",
-              });
+                    type: "error",
+                    content: "Something went wrong!",
+                });
             });
     };
 
@@ -154,7 +134,7 @@ const Profile = () => {
                     <div className="first-left-container">
                         <Avatar
                             size={200}
-                            src={MazenImg}
+                            src={UserImg}
                             className="profile-img"
                         />
                         <h1 className="title acc-title">
@@ -187,10 +167,7 @@ const Profile = () => {
                                         ]}
                                         colon=""
                                     >
-                                        <Input
-                                            className="logo-user without-logo"
-                                            value={"aaaaa"}
-                                        />
+                                        <Input className="logo-user without-logo" />
                                     </Form.Item>
                                     <Form.Item
                                         label="Last Name"
@@ -242,7 +219,7 @@ const Profile = () => {
                                 <div className="second-second-cont">
                                     <Form.Item
                                         label="Birth Date"
-                                        name="birthdate"
+                                        name="birthDate"
                                         colon=""
                                     >
                                         <DatePicker

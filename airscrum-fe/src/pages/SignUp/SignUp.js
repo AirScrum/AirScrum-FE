@@ -40,10 +40,11 @@ const SignUp = () => {
 
         axios
             .post("http://localhost:4000/register", {
-                fullName: values.name,
+                firstName: values.firstName,
+                lastName: values.lastName,
                 email: values.email,
                 password: values.password,
-                birthDate: JSON.stringify(values.birthdate).slice(1, 11),
+                birthDate: values.birthDate === undefined ? undefined : JSON.stringify(values.birthDate).slice(1, 11),
             })
             .then((user) => {
                 console.log(user);
@@ -79,12 +80,29 @@ const SignUp = () => {
                     layout="vertical"
                 >
                     <Form.Item
-                        label="First and Last Name"
-                        name="name"
+                        label="First Name"
+                        name="firstName"
                         rules={[
                             {
                                 required: true,
-                                message: "Please enter your name",
+                                message: "Please enter your first name",
+                            },
+                        ]}
+                        colon=""
+                    >
+                        <Input
+                            placeholder="John Smith"
+                            className="logo-user including-name-logo"
+                        />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Last Name"
+                        name="lastName"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please enter your last name",
                             },
                         ]}
                         colon=""
@@ -140,7 +158,7 @@ const SignUp = () => {
                     </Form.Item>
                     <Form.Item
                         label="Confirm Password"
-                        name="confirmpassword"
+                        name="confirmPassword"
                         rules={[
                             {
                                 required: true,
@@ -162,7 +180,7 @@ const SignUp = () => {
                         />
                     </Form.Item>
 
-                    <Form.Item label="Birth Date" name="birthdate" colon="">
+                    <Form.Item label="Birth Date" name="birthDate" colon="">
                         <DatePicker className="logo-user birth-date" />
                     </Form.Item>
                     <Form.Item
