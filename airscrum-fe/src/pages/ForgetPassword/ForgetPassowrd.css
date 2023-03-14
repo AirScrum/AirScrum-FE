@@ -1,0 +1,21 @@
+.card-forget{
+    margin-top: 70px;
+    margin-bottom: 70px;
+    width: 50%;
+}
+
+#forget{
+	background-image: url(../../Assets/Forgot\ password-bro.png) !important;
+}
+
+@media (max-width: 700px) {
+    .card-forget{
+        width: 70%;
+    }
+}
+
+@media (max-width: 460px) {
+    .card-forget{
+        width: 90%;
+    }
+}

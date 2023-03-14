@@ -70,6 +70,10 @@ const Login = () => {
         window.open("http://localhost:4000/auth/google", "_self");
     };
 
+    const forgetPassword = () => {
+        navigate("/forgetpassword");
+    };
+
     const signUp = () => {
         navigate("/signup");
     };
@@ -164,7 +168,7 @@ const Login = () => {
                             </Form.Item>
                         </Col>
                         <Col span={12} align="right">
-                            <button className="forget">Forget password?</button>
+                            <button className="forget" onClick={forgetPassword}>Forget password?</button>
                         </Col>
                     </Row>
                     {verificationError ? (

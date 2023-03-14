@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Upload from "./pages/Upload/Upload";
 import History from "./pages/History/History";
 import EmailVerify from "./pages/EmailVerify/EmailVerify";
+import ForgetPassowrd from "./pages//ForgetPassword/ForgetPassword";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/upload" element={<div><NavBar/><Upload/><Footer/></div>}/>
         <Route path="/history" element={<div><NavBar/><History/><Footer/></div>}/>
         <Route path="/users/:id/verify/:token" element={<EmailVerify/>}/>
+        <Route path="/forgetpassword" element={<ForgetPassowrd/>}/>
       </Routes>
     </Router>
   );
