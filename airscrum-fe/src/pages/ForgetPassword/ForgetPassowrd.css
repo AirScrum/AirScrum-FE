@@ -1,7 +1,7 @@
 .card-forget{
-    margin-top: 70px;
-    margin-bottom: 70px;
-    width: 50%;
+    margin-top: 10% !important;
+    margin-bottom: 10% !important;
+    width: 50% !important;
 }
 
 #forget{
@@ -10,12 +10,12 @@
 
 @media (max-width: 700px) {
     .card-forget{
-        width: 70%;
+        width: 70% !important;
     }
 }
 
 @media (max-width: 460px) {
     .card-forget{
-        width: 90%;
+        width: 90% !important;
     }
 }
