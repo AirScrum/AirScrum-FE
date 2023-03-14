@@ -39,7 +39,15 @@ const SignUp = () => {
          * Validation  on data
          */
 
-        axios
+        if(values.password !== values.confirmPassword){
+            messageApi.open({
+                type: 'error',
+                content: "Passwords do not match",
+            });
+        }
+
+        else{
+            axios
             .post("http://localhost:4000/register", {
                 firstName: values.firstName,
                 lastName: values.lastName,
@@ -65,6 +73,8 @@ const SignUp = () => {
                     content: err.response.data.message,
                 });
             });
+        }
+
     };
 
     return (
@@ -153,6 +163,14 @@ const SignUp = () => {
                             {
                                 required: true,
                                 message: "Please enter the password",
+                            },
+                            {
+                                min: 12,
+                                message: "Password should be 12 characters minimum",
+                            },
+                            {
+                                max: 15,
+                                message: "Password should be 15 characters maximum",
                             },
                         ]}
                         colon=""
