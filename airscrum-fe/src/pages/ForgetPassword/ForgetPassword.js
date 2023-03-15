@@ -8,8 +8,25 @@ const ForgetPassword = () => {
     const [messageApi, contextHolder] = message.useMessage();
 
     const handleSubmit = (values) => {
+        console.log(values.email);
+        axios
+            .post("http://localhost:4000/forget", {
+                email: values.email,
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((err) => {
+                console.log(err);
+                invalidData(err.response.data.message);
+            });
+    };
 
-        const email = values.email;
+    const invalidData = (message) => {
+        messageApi.open({
+            type: "error",
+            content: message,
+        });
     };
 
     return (
@@ -60,7 +77,8 @@ const ForgetPassword = () => {
                     </Form.Item>
 
                     <Form.Item>
-                    <br /><br />
+                        <br />
+                        <br />
                         <Button
                             type="success"
                             htmlType="submit"
