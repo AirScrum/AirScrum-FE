@@ -66,18 +66,11 @@
 	color: var(--grey);
 }
 
-
-
-.remember:hover{
-	border-color: var(--main-button-color) !important;
-}
-
-
 .forget{
-	margin-top: 8px;
 	background-color: var(--transparent);
 	border: none;
 	color: var(--main-button-color);
+	margin-bottom: 8px;
 }
 
 .forget:hover{

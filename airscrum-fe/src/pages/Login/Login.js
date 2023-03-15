@@ -157,17 +157,7 @@ const Login = () => {
                         />
                     </Form.Item>
                     <Row>
-                        <Col span={12} align="left">
-                            <Form.Item
-                                name="remember"
-                                valuePropName="checked"
-                                wrapperCol={{ offset: 8, span: 16 }}
-                                className="remember"
-                            >
-                                <Checkbox>Remember me</Checkbox>
-                            </Form.Item>
-                        </Col>
-                        <Col span={12} align="right">
+                        <Col span={24} align="right">
                             <button className="forget" onClick={forgetPassword}>Forget password?</button>
                         </Col>
                     </Row>
