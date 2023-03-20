@@ -2,7 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Input } from "antd";
 import "./History.css"
 import RecordsTable from "../../components/RecordsTable/RecordsTable";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/userRedux";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ const History = () => {
 
     document.body.style = 'background: #ffffff !important;';
     const dispatch = useDispatch();
+    const [token, setToken] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,6 +23,7 @@ const History = () => {
         // Check if he has logged in using google
         
         //console.log(token)
+        setToken(token);
         axios.get("http://localhost:4000/protected", {
             headers: {
                 Authorization: token,
@@ -36,6 +38,25 @@ const History = () => {
         })
         
     }, [])
+
+    useEffect(() => {
+
+        if(token){
+            axios
+            .get("http://localhost:4000/history", {
+                headers: {
+                    Authorization: token,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+    
+    }, [token]);
     
     const onSearch = ()=>{
         /**
