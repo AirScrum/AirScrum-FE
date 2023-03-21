@@ -1,8 +1,10 @@
-/*********************** Start Spinner ***********************/
-.spinner-border{
-    height:5rem !important;
-    width: 5rem !important;
-    margin: auto;
-    color: var(--main-color-1-dark) !important;
-  }
-  /*********************** End Spinner ***********************/
+.loading-spinner-container {
+    height: 100%; /* Make the container full height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner-loading-gif{
+  height: 400px;
+}

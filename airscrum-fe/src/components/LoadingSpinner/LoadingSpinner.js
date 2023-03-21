@@ -1,14 +1,12 @@
-import { Spinner } from 'react-bootstrap';
-import './LoadingSpinner.css';
+import "./LoadingSpinner.css";
+import myLoadingGif from "../../Assets/loading-spinner-logo.gif";
+
 const LoadingSpinner = () => {
     return (
-        <div className="mt-5 d-flex justify-content-center">
-            <Spinner className="mt-5" animation="border" role="status" size="lg">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>
-
+        <div className="loading-spinner-container">
+            <img src={myLoadingGif} alt="loading..." className="spinner-loading-gif" />
         </div>
-    )
-}
+    );
+};
 
 export default LoadingSpinner;
