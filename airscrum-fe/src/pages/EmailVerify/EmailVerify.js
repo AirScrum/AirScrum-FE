@@ -25,7 +25,7 @@ function EmailVerify() {
 	return (
 		<div>
 			{validUrl ? (
-				<div className='container'>
+				<div className='email-verify-container'>
 					<img src={success} alt="success_img" className='email-verify-success-img' />
 					<h1>Email verified successfully</h1>
 					<Link to="/login">
