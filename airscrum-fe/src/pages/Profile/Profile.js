@@ -55,11 +55,27 @@ const Profile = () => {
                 dispatch(login());
             })
             .catch((err) => {
-                console.log(err);
-                dispatch(logout());
-                navigate("/login");
+                var refreshToken = Cookies.get("refresh_token");
+                axios
+                    .get("http://localhost:4000/refresh", {
+                        headers: {
+                            Authorization: refreshToken,
+                        },
+                    })
+                    .then((res) => {
+                        var newAccess = res.data.accessToken;
+                        var tokenTemp = "Bearer " + newAccess;
+                        Cookies.set("token", tokenTemp);
+                        setToken(newAccess)
+                        dispatch(login());
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        dispatch(logout());
+                        navigate("/login");
+                    });
             });
-    }, []);
+    }, [token]);
 
     useEffect(() => {
         axios

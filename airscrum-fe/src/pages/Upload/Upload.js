@@ -5,7 +5,7 @@ import FilesSent from "../../Assets/Files sent-amico.png";
 import { UploadOutlined } from "@ant-design/icons";
 import UserStory from "../../components/UserStoryCard/UserStoryCard";
 import { useDispatch } from "react-redux";
-import { logout } from "../../redux/userRedux";
+import { logout, login } from "../../redux/userRedux";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -70,9 +70,24 @@ const UploadFun = () => {
         console.log(res)
         
     }).catch(err => {
-        console.log(err)
-        dispatch(logout())
-        navigate('/login')
+      var refreshToken = Cookies.get("refresh_token");
+      axios
+          .get("http://localhost:4000/refresh", {
+              headers: {
+                  Authorization: refreshToken,
+              },
+          })
+          .then((res) => {
+              var newAccess = res.data.accessToken;
+              var tokenTemp = "Bearer " + newAccess;
+              Cookies.set("token", tokenTemp);
+              dispatch(login());
+          })
+          .catch((err) => {
+              console.log(err);
+              dispatch(logout());
+              navigate("/login");
+          });
     })
     
 }, [])

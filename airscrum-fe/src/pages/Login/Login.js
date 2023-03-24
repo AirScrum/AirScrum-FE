@@ -20,6 +20,7 @@ const Login = () => {
 
     useEffect(() => {
         Cookies.set("token", null);
+        Cookies.set("refresh_token", null);
     }, []);
 
     const handleSubmit = (values) => {
@@ -41,6 +42,7 @@ const Login = () => {
                     console.log(user);
                     if (user.status === 200) {
                         Cookies.set("token", user.data.token);
+                        Cookies.set("refresh_token", user.data.refresh);
                         dispatch(login());
                         navigate("/");
                     }

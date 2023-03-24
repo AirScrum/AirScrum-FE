@@ -23,7 +23,6 @@ const History = () => {
         // Check if he has logged in using google
 
         //console.log(token)
-        setToken(token);
         axios
             .get("http://localhost:4000/protected", {
                 headers: {
@@ -34,29 +33,48 @@ const History = () => {
                 setIsLoading(false);
                 console.log(res);
                 dispatch(login());
+                setToken(token);
+
             })
             .catch((err) => {
-                console.log(err);
-                dispatch(logout());
-                navigate("/login");
+                var refreshToken = Cookies.get("refresh_token");
+                axios
+                    .get("http://localhost:4000/refresh", {
+                        headers: {
+                            Authorization: refreshToken,
+                        },
+                    })
+                    .then((res) => {
+                        var newAccess = res.data.accessToken;
+                        var tokenTemp = "Bearer " + newAccess;
+                        Cookies.set("token", tokenTemp);
+                        setToken(newAccess);
+                        dispatch(login());
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        dispatch(logout());
+                        navigate("/login");
+                    });
             });
     }, []);
 
     useEffect(() => {
-        if (token) {
-            axios
-                .get("http://localhost:4000/history", {
-                    headers: {
-                        Authorization: token,
-                    },
-                })
-                .then((response) => {
-                    console.log(response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
+
+        axios
+            .get("http://localhost:4000/history", {
+                headers: {
+                    Authorization: token,
+                },
+            })
+            .then((response) => {
+                setIsLoading(false);
+                console.log(response);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.log(error);
+            });
     }, [token]);
 
     const onSearch = () => {
