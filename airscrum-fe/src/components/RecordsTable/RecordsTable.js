@@ -52,12 +52,12 @@ const RecordsTable = (props) => {
         ),
       },
     ];
-    const data = nestedData[record.id];
+    const data = nestedData[record._id];
     return (
       <Table
-        loading={isLoading[record.id] && !data}
+        loading={isLoading[record._id] && !data}
         columns={nestedColumns}
-        dataSource={nestedData[record.id]}
+        dataSource={nestedData[record._id]}
         pagination={false}
       />
     );
@@ -86,14 +86,12 @@ const RecordsTable = (props) => {
     },
   ];
   const handleExpand = async (expanded, record) => {
-    console.log(record);
     setIsLoading({
       [record.id]: true,
     });
     const meetingID = record._id;
     try {
       const response = await fetchUserStories(token, meetingID);
-
       setNestedData((state) => ({
         ...state,
         [record._id]: response.data?.data.map((userStory) => {
@@ -124,9 +122,9 @@ const RecordsTable = (props) => {
         cancelButtonProps={{ className: "cancel-btn-modal" }}
       >
         <PopUpUserStoryDetail
-          description={editUserStoryInput.description}
-          storyid={editUserStoryInput.id}
-          storytitle={editUserStoryInput.title}
+          description={editUserStoryInput.userStoryDescription}
+          storyid={editUserStoryInput._id}
+          storytitle={editUserStoryInput.userStoryTitle}
           status={editUserStoryInput.status}
           acceptance={editUserStoryInput.criteria}
           effort={editUserStoryInput.effort}
