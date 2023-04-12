@@ -12,123 +12,121 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const { Search } = Input;
 const History = () => {
-    document.body.style = "background: #ffffff !important;";
-    const dispatch = useDispatch();
-    const [token, setToken] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const navigate = useNavigate();
+  document.body.style = "background: #ffffff !important;";
+  const dispatch = useDispatch();
+  const [token, setToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        var token = Cookies.get("token");
-        // Check if he has logged in using google
+  useEffect(() => {
+    var token = Cookies.get("token");
+    // Check if he has logged in using google
 
-        //console.log(token)
+    //console.log(token)
+    axios
+      .get(`${process.env.REACT_APP_KIA}/protected`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        setIsLoading(false);
+        console.log(res);
+        dispatch(login());
+        setToken(token);
+      })
+      .catch((err) => {
+        var refreshToken = Cookies.get("refresh_token");
         axios
-            .get("http://localhost:4000/protected", {
-                headers: {
-                    Authorization: token,
-                },
-            })
-            .then((res) => {
-                setIsLoading(false);
-                console.log(res);
-                dispatch(login());
-                setToken(token);
+          .get(`${process.env.REACT_APP_KIA}/refresh`, {
+            headers: {
+              Authorization: refreshToken,
+            },
+          })
+          .then((res) => {
+            var newAccess = res.data.accessToken;
+            var tokenTemp = "Bearer " + newAccess;
+            Cookies.set("token", tokenTemp);
+            setToken(newAccess);
+            dispatch(login());
+          })
+          .catch((err) => {
+            console.log(err);
+            dispatch(logout());
+            navigate("/login");
+          });
+      });
+  }, []);
 
-            })
-            .catch((err) => {
-                var refreshToken = Cookies.get("refresh_token");
-                axios
-                    .get("http://localhost:4000/refresh", {
-                        headers: {
-                            Authorization: refreshToken,
-                        },
-                    })
-                    .then((res) => {
-                        var newAccess = res.data.accessToken;
-                        var tokenTemp = "Bearer " + newAccess;
-                        Cookies.set("token", tokenTemp);
-                        setToken(newAccess);
-                        dispatch(login());
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                        dispatch(logout());
-                        navigate("/login");
-                    });
-            });
-    }, []);
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_KIA}/history`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((response) => {
+        setIsLoading(false);
+        console.log(response);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.log(error);
+      });
+  }, [token]);
 
-    useEffect(() => {
-
-        axios
-            .get("http://localhost:4000/history", {
-                headers: {
-                    Authorization: token,
-                },
-            })
-            .then((response) => {
-                setIsLoading(false);
-                console.log(response);
-            })
-            .catch((error) => {
-                setIsLoading(false);
-                console.log(error);
-            });
-    }, [token]);
-
-    const onSearch = () => {
-        /**
-         * TODO make GET request on the User Management Service
-         * on the Search endpoint
-         */
-    };
-    return (
+  const onSearch = () => {
+    /**
+     * TODO make GET request on the User Management Service
+     * on the Search endpoint
+     */
+  };
+  return (
+    <>
+      <Container className="mt-4">
+        <Row>
+          <Col sm={12}>
+            <h2>History</h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={12}>
+            <p className="light-rubik-font">
+              Access your previously uploaded records and user stories generated
+              from them
+            </p>
+          </Col>
+        </Row>
+      </Container>
+      <hr></hr>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
         <>
-            <Container className="mt-4">
-                <Row>
-                    <Col sm={12}>
-                        <h2>History</h2>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={12}>
-                        <p className="light-rubik-font">
-                            Access your previously uploaded records and user
-                            stories generated from them
-                        </p>
-                    </Col>
-                </Row>
-            </Container>
-            <hr></hr>
-            {isLoading ? (
-                <LoadingSpinner />
-            ) : (
-                <>
-                    <Container>
-                        <Row>
-                            <Col sm={12}>
-                                <Search
-                                    placeholder="Search by record meeting title, date, or anything else!"
-                                    allowClear
-                                    onSearch={onSearch}
-                                    size="large"
-                                />
-                            </Col>
-                        </Row>
-                    </Container>
-                    <br></br>
-                    <Container className="records-table-container">
-                        <Row>
-                            <Col sm={12}>
-                                <RecordsTable></RecordsTable>
-                            </Col>
-                        </Row>
-                    </Container>
-                </>
-            )}
+          <Container>
+            <Row>
+              <Col sm={12}>
+                <Search
+                  placeholder="Search by record meeting title, date, or anything else!"
+                  allowClear
+                  onSearch={onSearch}
+                  size="large"
+                />
+              </Col>
+            </Row>
+          </Container>
+          <br></br>
+          <Container className="records-table-container">
+            <Row>
+              <Col sm={12}>
+                <RecordsTable></RecordsTable>
+              </Col>
+            </Row>
+          </Container>
         </>
-    );
+      )}
+    </>
+  );
 };
 
 export default History;

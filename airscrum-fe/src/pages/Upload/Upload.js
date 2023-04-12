@@ -7,11 +7,10 @@ import UserStory from "../../components/UserStoryCard/UserStoryCard";
 import { useDispatch } from "react-redux";
 import { logout, login } from "../../redux/userRedux";
 import { useNavigate } from "react-router-dom";
-import Cookies from 'js-cookie';
-import axios from 'axios';
+import Cookies from "js-cookie";
+import axios from "axios";
 
 const { Title } = Typography;
-
 
 const UploadFun = () => {
   document.body.style = "background: #ffffff !important;";
@@ -25,10 +24,10 @@ const UploadFun = () => {
 
   const uploadProps = {
     name: "file",
-    action: "http://localhost:4000/request/speech2text",
+    action: `${process.env.REACT_APP_KIA}/request/speech2text`,
     method: "POST",
     headers: {
-      authorization: Cookies.get('token'),
+      authorization: Cookies.get("token"),
     },
     /*beforeUpload: (file) => {
       controlProgressBar();
@@ -41,9 +40,9 @@ const UploadFun = () => {
         message.error(`${info.file.name} file upload failed.`);
       }
     },
-		onRemove: (file) => {
-			setVisibleElements("none");
-	}
+    onRemove: (file) => {
+      setVisibleElements("none");
+    },
   };
 
   /*
@@ -57,40 +56,40 @@ const UploadFun = () => {
   };*/
 
   useEffect(() => {
-
-    var token = Cookies.get('token');
+    var token = Cookies.get("token");
     // Check if he has logged in using google
-    
-    console.log(token)
-    axios.get("http://localhost:4000/protected", {
+
+    console.log(token);
+    axios
+      .get(`${process.env.REACT_APP_KIA}/protected`, {
         headers: {
-            Authorization: token,
-        }
-    }).then(res => {
-        console.log(res)
-        
-    }).catch(err => {
-      var refreshToken = Cookies.get("refresh_token");
-      axios
-          .get("http://localhost:4000/refresh", {
-              headers: {
-                  Authorization: refreshToken,
-              },
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        var refreshToken = Cookies.get("refresh_token");
+        axios
+          .get(`${process.env.REACT_APP_KIA}/refresh`, {
+            headers: {
+              Authorization: refreshToken,
+            },
           })
           .then((res) => {
-              var newAccess = res.data.accessToken;
-              var tokenTemp = "Bearer " + newAccess;
-              Cookies.set("token", tokenTemp);
-              dispatch(login());
+            var newAccess = res.data.accessToken;
+            var tokenTemp = "Bearer " + newAccess;
+            Cookies.set("token", tokenTemp);
+            dispatch(login());
           })
           .catch((err) => {
-              console.log(err);
-              dispatch(logout());
-              navigate("/login");
+            console.log(err);
+            dispatch(logout());
+            navigate("/login");
           });
-    })
-    
-}, [])
+      });
+  }, []);
 
   /*useEffect(() => {
     var interval =0
@@ -104,8 +103,6 @@ const UploadFun = () => {
       clearInterval(interval);
     };
   }, [percent]);*/
-
-  
 
   return (
     <div className="upload-cont">
