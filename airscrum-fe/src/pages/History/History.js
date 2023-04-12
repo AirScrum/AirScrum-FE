@@ -9,20 +9,19 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-
+import { fetchMeetings } from "../../network/network";
 const { Search } = Input;
 const History = () => {
   document.body.style = "background: #ffffff !important;";
   const dispatch = useDispatch();
   const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [meetingData, setMeetingData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     var token = Cookies.get("token");
     // Check if he has logged in using google
-
-    //console.log(token)
     axios
       .get(`${process.env.REACT_APP_KIA}/protected`, {
         headers: {
@@ -59,20 +58,20 @@ const History = () => {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_KIA}/history`, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((response) => {
-        setIsLoading(false);
-        console.log(response);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.log(error);
-      });
+    async function fetchMeetingData() {
+      if (token) {
+        try {
+          const response = await fetchMeetings(token);
+          setIsLoading(false);
+          console.log(response.data);
+          setMeetingData(response.data?.meetings);
+        } catch (error) {
+          setIsLoading(false);
+          console.log(error);
+        }
+      }
+    }
+    fetchMeetingData();
   }, [token]);
 
   const onSearch = () => {
@@ -119,7 +118,10 @@ const History = () => {
           <Container className="records-table-container">
             <Row>
               <Col sm={12}>
-                <RecordsTable></RecordsTable>
+                <RecordsTable
+                  token={token}
+                  meetingData={meetingData}
+                ></RecordsTable>
               </Col>
             </Row>
           </Container>
