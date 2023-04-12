@@ -86,28 +86,30 @@ const RecordsTable = (props) => {
     },
   ];
   const handleExpand = async (expanded, record) => {
-    setIsLoading({
-      [record.id]: true,
-    });
-    const meetingID = record._id;
-    try {
-      const response = await fetchUserStories(token, meetingID);
-      setNestedData((state) => ({
-        ...state,
-        [record._id]: response.data?.data.map((userStory) => {
-          return {
-            _id: userStory._id,
-            userStoryTitle: userStory.userStoryTitle,
-            userStoryDescription: userStory.userStoryDescription,
-          };
-        }),
-      }));
-    } catch (error) {
-      console.log(error);
-    } finally {
+    if (expanded) {
       setIsLoading({
-        [record.id]: false,
+        [record.id]: true,
       });
+      const meetingID = record._id;
+      try {
+        const response = await fetchUserStories(token, meetingID);
+        setNestedData((state) => ({
+          ...state,
+          [record._id]: response.data?.data.map((userStory) => {
+            return {
+              _id: userStory._id,
+              userStoryTitle: userStory.userStoryTitle,
+              userStoryDescription: userStory.userStoryDescription,
+            };
+          }),
+        }));
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading({
+          [record.id]: false,
+        });
+      }
     }
   };
 
