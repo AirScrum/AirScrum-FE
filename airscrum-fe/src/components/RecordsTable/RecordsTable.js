@@ -2,13 +2,18 @@ import { Badge, Space, Table, Tag } from "antd";
 import PopUpUserStoryDetail from "../PopUpUserStoryDetails/PopUpUserStoryDetails";
 import { Modal } from "antd";
 import { useState } from "react";
-import { fetchUserStories } from "../../network/network";
+import { deleteMeeting, fetchUserStories } from "../../network/network";
 const RecordsTable = (props) => {
   const { meetingData, token } = props;
   const [showPopUserStoryEdit, setShowPopUserStoryEdit] = useState(false);
   const [editUserStoryInput, setEditUserStoryInput] = useState({});
   const [nestedData, setNestedData] = useState({});
   const [isLoading, setIsLoading] = useState({});
+  // const [expandedRowKeys, setExpandedRowKeys] = useState([]);
+  const modifiedData = meetingData.map((item) => ({
+    ...item,
+    key: item._id,
+  }));
   const handleOk = () => {
     /**
      * TODO Update the user stories data using its ID.
@@ -81,14 +86,27 @@ const RecordsTable = (props) => {
     {
       title: "Actions",
       render: (text, record, index) => {
-        return <a>Delete</a>;
+        return (
+          <a
+            onClick={async () => {
+              try {
+                const response = await deleteMeeting(token, record._id);
+                console.log("Deleted successfully", response);
+              } catch (error) {
+                console.error(error);
+              }
+            }}
+          >
+            Delete
+          </a>
+        );
       },
     },
   ];
   const handleExpand = async (expanded, record) => {
     if (expanded) {
       setIsLoading({
-        [record.id]: true,
+        [record._id]: true,
       });
       const meetingID = record._id;
       try {
@@ -107,7 +125,7 @@ const RecordsTable = (props) => {
         console.log(error);
       } finally {
         setIsLoading({
-          [record.id]: false,
+          [record._id]: false,
         });
       }
     }
@@ -139,7 +157,7 @@ const RecordsTable = (props) => {
           expandedRowRender,
           onExpand: handleExpand,
         }}
-        dataSource={meetingData}
+        dataSource={modifiedData}
         size="large"
       />
     </>
