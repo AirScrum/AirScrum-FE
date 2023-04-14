@@ -19,3 +19,13 @@ export const fetchUserStories = async (token, meetingID) => {
   });
   return data;
 };
+
+export const deleteMeeting = async (token, meetingID) => {
+  const uri = process.env.REACT_APP_KIA;
+  const response = await axios.delete(`${uri}/history/${meetingID}`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return response;
+};
