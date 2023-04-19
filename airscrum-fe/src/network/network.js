@@ -29,3 +29,14 @@ export const deleteMeeting = async (token, meetingID) => {
   });
   return response;
 };
+
+export const updateUserStory = async (token, userStoryID, data) => {
+  const uri = process.env.REACT_APP_KIA;
+  console.log(`token`, token);
+  const response = await axios.put(`${uri}/userstories/${userStoryID}`, data, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return response;
+};
