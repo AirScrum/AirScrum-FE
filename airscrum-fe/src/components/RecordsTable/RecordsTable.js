@@ -149,10 +149,15 @@ const RecordsTable = (props) => {
             onClick={async () => {
               try {
                 const response = await deleteMeeting(token, record._id);
-                alert("Deleted meeting successfully");
-                dispatch(increment());
+                if (response.status === 200) {
+                  alert("Deleted meeting successfully");
+                  dispatch(increment());
+                } else {
+                  throw new Error(response.data);
+                }
               } catch (error) {
                 console.error(error);
+                alert(`Error deleting a meeting: ${error}`);
               }
             }}
           >
