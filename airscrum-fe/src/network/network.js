@@ -40,3 +40,13 @@ export const updateUserStory = async (token, userStoryID, data) => {
   });
   return response;
 };
+export const deleteUserStory = async (token, userStoryID) => {
+  const uri = process.env.REACT_APP_KIA;
+  console.log(`token`, token);
+  const response = await axios.delete(`${uri}/userstories/${userStoryID}`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return response;
+};
