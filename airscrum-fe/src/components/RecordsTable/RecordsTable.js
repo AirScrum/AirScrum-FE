@@ -1,23 +1,38 @@
-import { Badge, Space, Table, Tag } from "antd";
+import { Badge, Space, Table, Tag, Form } from "antd";
 import PopUpUserStoryDetail from "../PopUpUserStoryDetails/PopUpUserStoryDetails";
 import { Modal } from "antd";
 import { useState } from "react";
-import { deleteMeeting, fetchUserStories } from "../../network/network";
+import {
+  deleteMeeting,
+  fetchUserStories,
+  updateUserStory,
+} from "../../network/network";
 const RecordsTable = (props) => {
   const { meetingData, token } = props;
   const [showPopUserStoryEdit, setShowPopUserStoryEdit] = useState(false);
   const [editUserStoryInput, setEditUserStoryInput] = useState({});
   const [nestedData, setNestedData] = useState({});
   const [isLoading, setIsLoading] = useState({});
+  const [editUserStoryForm] = Form.useForm();
+
   // const [expandedRowKeys, setExpandedRowKeys] = useState([]);
   const modifiedData = meetingData.map((item) => ({
     ...item,
     key: item._id,
   }));
-  const handleOk = () => {
-    /**
-     * TODO Update the user stories data using its ID.
-     */
+  const handleOk = async () => {
+    const formValues = editUserStoryForm.getFieldsValue();
+    console.log(`formValues`, formValues);
+    const response = await updateUserStory(
+      token,
+      editUserStoryInput._id,
+      formValues
+    );
+    console.log(`updateUserStory`, response);
+    if (response.status === 200) {
+      alert("Updated user story successfully!");
+      window.location.reload();
+    }
     setShowPopUserStoryEdit(false);
   };
 
@@ -26,6 +41,7 @@ const RecordsTable = (props) => {
   };
 
   const onEditButtonClick = (record) => {
+    console.log(record);
     setEditUserStoryInput({ ...record });
     setShowPopUserStoryEdit(true);
   };
@@ -45,6 +61,26 @@ const RecordsTable = (props) => {
         title: "UserStory Description",
         dataIndex: "userStoryDescription",
         key: "userStoryDescription",
+      },
+      {
+        title: "UserStory Status",
+        dataIndex: "userStoryStatus",
+        key: "userStoryStatus",
+      },
+      {
+        title: "Acceptance Criteria",
+        dataIndex: "AcceptanceCriteria",
+        key: "AcceptanceCriteria",
+      },
+      {
+        title: "UserStory Effort",
+        dataIndex: "userStoryEffort",
+        key: "userStoryEffort",
+      },
+      {
+        title: "UserStory Priority",
+        dataIndex: "userStoryPriority",
+        key: "userStoryPriority",
       },
       {
         title: "Action",
@@ -118,6 +154,10 @@ const RecordsTable = (props) => {
               _id: userStory._id,
               userStoryTitle: userStory.userStoryTitle,
               userStoryDescription: userStory.userStoryDescription,
+              userStoryStatus: userStory?.userStoryStatus,
+              AcceptanceCriteria: userStory?.AcceptanceCriteria,
+              userStoryEffort: userStory?.userStoryEffort,
+              userStoryPriority: userStory?.userStoryPriority,
             };
           }),
         }));
@@ -142,13 +182,14 @@ const RecordsTable = (props) => {
         cancelButtonProps={{ className: "cancel-btn-modal" }}
       >
         <PopUpUserStoryDetail
+          editUserStoryForm={editUserStoryForm}
           description={editUserStoryInput.userStoryDescription}
           storyid={editUserStoryInput._id}
           storytitle={editUserStoryInput.userStoryTitle}
-          status={editUserStoryInput.status}
-          acceptance={editUserStoryInput.criteria}
-          effort={editUserStoryInput.effort}
-          priority={editUserStoryInput.priority}
+          status={editUserStoryInput.userStoryStatus}
+          acceptance={editUserStoryInput.AcceptanceCriteria}
+          effort={editUserStoryInput.userStoryEffort}
+          priority={editUserStoryInput.userStoryPriority}
         />
       </Modal>
       <Table
