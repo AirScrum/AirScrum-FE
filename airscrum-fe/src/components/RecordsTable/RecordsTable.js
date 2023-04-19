@@ -6,7 +6,10 @@ import {
   deleteMeeting,
   fetchUserStories,
   updateUserStory,
+  deleteUserStory,
 } from "../../network/network";
+import { useDispatch } from "react-redux";
+import { increment } from "../../redux/refetchReducer";
 const RecordsTable = (props) => {
   const { meetingData, token } = props;
   const [showPopUserStoryEdit, setShowPopUserStoryEdit] = useState(false);
@@ -14,6 +17,7 @@ const RecordsTable = (props) => {
   const [nestedData, setNestedData] = useState({});
   const [isLoading, setIsLoading] = useState({});
   const [editUserStoryForm] = Form.useForm();
+  const dispatch = useDispatch();
 
   // const [expandedRowKeys, setExpandedRowKeys] = useState([]);
   const modifiedData = meetingData.map((item) => ({
@@ -31,6 +35,7 @@ const RecordsTable = (props) => {
     console.log(`updateUserStory`, response);
     if (response.status === 200) {
       alert("Updated user story successfully!");
+      dispatch(increment());
       window.location.reload();
     }
     setShowPopUserStoryEdit(false);
@@ -44,6 +49,22 @@ const RecordsTable = (props) => {
     console.log(record);
     setEditUserStoryInput({ ...record });
     setShowPopUserStoryEdit(true);
+  };
+  const onDeleteUserStoryButtonClick = async (record) => {
+    console.log(record);
+    try {
+      const response = await deleteUserStory(token, record._id);
+      console.log(response);
+      if (response.status === 200) {
+        alert("UserStory has been removed successfully");
+        dispatch(increment());
+        window.location.reload();
+      } else {
+        throw new Error(response.data);
+      }
+    } catch (error) {
+      alert(`Something has gone wrong: ${error}`);
+    }
   };
   const expandedRowRender = (record) => {
     const nestedColumns = [
@@ -89,6 +110,7 @@ const RecordsTable = (props) => {
         render: (_, record) => (
           <Space size="middle">
             <a onClick={() => onEditButtonClick(record)}>Edit</a>
+            <a onClick={() => onDeleteUserStoryButtonClick(record)}>Delete</a>
           </Space>
         ),
       },
@@ -127,9 +149,15 @@ const RecordsTable = (props) => {
             onClick={async () => {
               try {
                 const response = await deleteMeeting(token, record._id);
-                console.log("Deleted successfully", response);
+                if (response.status === 200) {
+                  alert("Deleted meeting successfully");
+                  dispatch(increment());
+                } else {
+                  throw new Error(response.data);
+                }
               } catch (error) {
                 console.error(error);
+                alert(`Error deleting a meeting: ${error}`);
               }
             }}
           >

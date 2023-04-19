@@ -3,7 +3,7 @@ import { Input } from "antd";
 import "./History.css";
 import RecordsTable from "../../components/RecordsTable/RecordsTable";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../../redux/userRedux";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -18,7 +18,7 @@ const History = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [meetingData, setMeetingData] = useState([]);
   const navigate = useNavigate();
-
+  const refetchCount = useSelector((state) => state.refetchState.value);
   useEffect(() => {
     var token = Cookies.get("token");
     // Check if he has logged in using google
@@ -72,7 +72,7 @@ const History = () => {
       }
     }
     fetchMeetingData();
-  }, [token]);
+  }, [token, refetchCount]);
 
   const onSearch = () => {
     /**
