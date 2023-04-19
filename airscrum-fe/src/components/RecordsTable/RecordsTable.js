@@ -149,7 +149,8 @@ const RecordsTable = (props) => {
             onClick={async () => {
               try {
                 const response = await deleteMeeting(token, record._id);
-                console.log("Deleted successfully", response);
+                alert("Deleted meeting successfully");
+                dispatch(increment());
               } catch (error) {
                 console.error(error);
               }
