@@ -1,4 +1,4 @@
-import { Badge, Space, Table, Tag, Form } from "antd";
+import { Badge, Space, Table, Tag, Form, Button } from "antd";
 import PopUpUserStoryDetail from "../PopUpUserStoryDetails/PopUpUserStoryDetails";
 import { Modal } from "antd";
 import { useState } from "react";
@@ -13,10 +13,14 @@ import { increment } from "../../redux/refetchReducer";
 const RecordsTable = (props) => {
   const { meetingData, token } = props;
   const [showPopUserStoryEdit, setShowPopUserStoryEdit] = useState(false);
+  const [showPopUserStoryCreate, setShowPopUserStoryCreate] = useState(false);
   const [editUserStoryInput, setEditUserStoryInput] = useState({});
   const [nestedData, setNestedData] = useState({});
   const [isLoading, setIsLoading] = useState({});
   const [editUserStoryForm] = Form.useForm();
+  const [createUserStoryForm] = Form.useForm();
+  const [createUserStoryMeetingID, setCreateUserStoryMeetingID] =
+    useState(null);
   const dispatch = useDispatch();
 
   // const [expandedRowKeys, setExpandedRowKeys] = useState([]);
@@ -43,6 +47,28 @@ const RecordsTable = (props) => {
 
   const handleCancel = () => {
     setShowPopUserStoryEdit(false);
+  };
+  const handleOkCreate = async () => {
+    const createFormValues = createUserStoryForm.getFieldsValue();
+    const createFormErrors = createUserStoryForm
+      .getFieldsError()
+      .flatMap((field) => field.errors);
+    if (createFormErrors.length > 0) {
+      alert(createFormErrors);
+    } else {
+      console.log(`el meeting ID`, createUserStoryMeetingID);
+      console.log(createFormValues);
+      setShowPopUserStoryCreate(false);
+    }
+  };
+  const handleCancelCreate = () => {
+    setShowPopUserStoryCreate(false);
+  };
+
+  const onCreateNewUserStory = (meetingID) => {
+    console.log(meetingID);
+    setCreateUserStoryMeetingID(meetingID);
+    setShowPopUserStoryCreate(true);
   };
 
   const onEditButtonClick = (record) => {
@@ -117,12 +143,20 @@ const RecordsTable = (props) => {
     ];
     const data = nestedData[record._id];
     return (
-      <Table
-        loading={isLoading[record._id] && !data}
-        columns={nestedColumns}
-        dataSource={nestedData[record._id]}
-        pagination={false}
-      />
+      <>
+        <Table
+          loading={isLoading[record._id] && !data}
+          columns={nestedColumns}
+          dataSource={nestedData[record._id]}
+          pagination={false}
+        />
+        <Button
+          style={{ paddingBottom: "36px" }}
+          onClick={() => onCreateNewUserStory(record._id)}
+        >
+          Add new user story
+        </Button>
+      </>
     );
   };
   const columns = [
@@ -210,7 +244,8 @@ const RecordsTable = (props) => {
         cancelButtonProps={{ className: "cancel-btn-modal" }}
       >
         <PopUpUserStoryDetail
-          editUserStoryForm={editUserStoryForm}
+          isEdit={true}
+          userStoryForm={editUserStoryForm}
           description={editUserStoryInput.userStoryDescription}
           storyid={editUserStoryInput._id}
           storytitle={editUserStoryInput.userStoryTitle}
@@ -218,6 +253,19 @@ const RecordsTable = (props) => {
           acceptance={editUserStoryInput.AcceptanceCriteria}
           effort={editUserStoryInput.userStoryEffort}
           priority={editUserStoryInput.userStoryPriority}
+        />
+      </Modal>
+      <Modal
+        title="User Story Update"
+        open={showPopUserStoryCreate}
+        onOk={handleOkCreate}
+        onCancel={handleCancelCreate}
+        okButtonProps={{ className: "ok-btn-modal" }}
+        cancelButtonProps={{ className: "cancel-btn-modal" }}
+      >
+        <PopUpUserStoryDetail
+          isEdit={false}
+          userStoryForm={createUserStoryForm}
         />
       </Modal>
       <Table
