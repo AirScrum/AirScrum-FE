@@ -10,7 +10,8 @@ const PopUpUserStoryDetail = (props) => {
     acceptance,
     effort,
     priority,
-    editUserStoryForm,
+    userStoryForm,
+    isEdit,
   } = props;
 
   const onFinish = (values) => {
@@ -19,18 +20,26 @@ const PopUpUserStoryDetail = (props) => {
   return (
     <div className="story-detail-container">
       <Form
-        form={editUserStoryForm}
-        name="editUserStoryForm"
+        form={userStoryForm}
+        name="userStoryForm"
         onFinishFailed={() => alert("Failed to submit")}
         onFinish={onFinish}
         initialValues={{ remember: true }}
         layout="vertical"
       >
         <div className="header-modal">
-          <span className="story-id">{storyid}</span>
-          <Form.Item name="userStoryTitle" colon="" initialValue={storytitle}>
+          {isEdit ? <span className="story-id">{storyid}</span> : <></>}
+          <Form.Item
+            name="userStoryTitle"
+            colon=""
+            initialValue={storytitle}
+            rules={[
+              { required: true, message: "Please enter user story title!" },
+            ]}
+            requiredMark={true}
+          >
             <Input
-              placeholder="Login"
+              placeholder="User story title"
               className="logo-user without-logo story-title wrap-width"
             />
           </Form.Item>
@@ -42,6 +51,10 @@ const PopUpUserStoryDetail = (props) => {
           colon=""
           className="popup-label"
           initialValue={description}
+          rules={[
+            { required: true, message: "Please enter user story description!" },
+          ]}
+          requiredMark={true}
         >
           <TextArea
             rows={4}
