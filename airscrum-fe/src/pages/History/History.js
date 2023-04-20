@@ -17,6 +17,7 @@ const History = () => {
   const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [meetingData, setMeetingData] = useState([]);
+  const [userID, setUserID] = useState(null);
   const navigate = useNavigate();
   const refetchCount = useSelector((state) => state.refetchState.value);
   useEffect(() => {
@@ -31,6 +32,7 @@ const History = () => {
       .then((res) => {
         setIsLoading(false);
         console.log(res);
+        setUserID(res.data?.user?.id);
         dispatch(login());
         setToken(token);
       })
@@ -121,6 +123,7 @@ const History = () => {
                 <RecordsTable
                   token={token}
                   meetingData={meetingData}
+                  userID={userID}
                 ></RecordsTable>
               </Col>
             </Row>

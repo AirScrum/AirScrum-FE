@@ -50,3 +50,14 @@ export const deleteUserStory = async (token, userStoryID) => {
   });
   return response;
 };
+
+export const createUserStory = async (token, data) => {
+  const uri = process.env.REACT_APP_KIA;
+  console.log(`token`, token);
+  const response = await axios.post(`${uri}/userstories/`, data, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return response;
+};
