@@ -7,11 +7,12 @@ import {
   fetchUserStories,
   updateUserStory,
   deleteUserStory,
+  createUserStory,
 } from "../../network/network";
 import { useDispatch } from "react-redux";
 import { increment } from "../../redux/refetchReducer";
 const RecordsTable = (props) => {
-  const { meetingData, token } = props;
+  const { meetingData, token, userID } = props;
   const [showPopUserStoryEdit, setShowPopUserStoryEdit] = useState(false);
   const [showPopUserStoryCreate, setShowPopUserStoryCreate] = useState(false);
   const [editUserStoryInput, setEditUserStoryInput] = useState({});
@@ -56,8 +57,18 @@ const RecordsTable = (props) => {
     if (createFormErrors.length > 0) {
       alert(createFormErrors);
     } else {
-      console.log(`el meeting ID`, createUserStoryMeetingID);
-      console.log(createFormValues);
+      const data = {
+        ...createFormValues,
+        textID: createUserStoryMeetingID,
+        userID: userID,
+      };
+      const response = await createUserStory(token, data);
+      if (response.status === 201) {
+        alert("Created user story successfully!");
+        dispatch(increment());
+      } else {
+        alert(response?.message);
+      }
       setShowPopUserStoryCreate(false);
     }
   };
@@ -66,7 +77,6 @@ const RecordsTable = (props) => {
   };
 
   const onCreateNewUserStory = (meetingID) => {
-    console.log(meetingID);
     setCreateUserStoryMeetingID(meetingID);
     setShowPopUserStoryCreate(true);
   };
