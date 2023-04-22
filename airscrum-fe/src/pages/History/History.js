@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import { fetchMeetings } from "../../network/network";
+import { fetchMeetings, fetchMeetingData } from "../../network/network";
 const { Search } = Input;
 const History = () => {
   document.body.style = "background: #ffffff !important;";
@@ -76,11 +76,24 @@ const History = () => {
     fetchMeetingData();
   }, [token, refetchCount]);
 
-  const onSearch = () => {
-    /**
-     * TODO make GET request on the User Management Service
-     * on the Search endpoint
-     */
+  const onSearch = async (value) => {
+    setIsLoading(true);
+    try {
+      if (value) {
+        const response = await fetchMeetingData(token, value);
+        const modifiedResponse = [response.data?.meetings];
+        console.log(modifiedResponse);
+        setMeetingData(modifiedResponse);
+      } else {
+        const response = await fetchMeetings(token);
+        console.log(response.data);
+        setMeetingData(response.data?.meetings);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+    setIsLoading(false);
   };
   return (
     <>
@@ -108,7 +121,7 @@ const History = () => {
             <Row>
               <Col sm={12}>
                 <Search
-                  placeholder="Search by record meeting title, date, or anything else!"
+                  placeholder="Search by record meeting ID"
                   allowClear
                   onSearch={onSearch}
                   size="large"
