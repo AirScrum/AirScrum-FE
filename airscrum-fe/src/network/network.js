@@ -30,6 +30,16 @@ export const deleteMeeting = async (token, meetingID) => {
   return response;
 };
 
+export const fetchMeetingData = async (token, meetingID) => {
+  const uri = process.env.REACT_APP_KIA;
+  const response = await axios.get(`${uri}/history/meetingmeta/${meetingID}`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return response;
+};
+
 export const updateUserStory = async (token, userStoryID, data) => {
   const uri = process.env.REACT_APP_KIA;
   console.log(`token`, token);
