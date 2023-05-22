@@ -8,6 +8,20 @@
 	background-image: url(../../Assets/Forgot\ password-bro.png) !important;
 }
 
+.login-verification-cont{
+	width: 100%;
+	background-color: #44cc00;
+	color: whitesmoke;
+	text-align: center;
+	border-radius: 10px;
+	padding: 7px;
+	margin-bottom: 10px;
+}
+
+.login-verification-message{
+	font-size: 15px;
+}
+
 @media (max-width: 700px) {
     .card-forget{
         width: 70% !important;

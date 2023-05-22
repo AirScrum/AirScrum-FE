@@ -5,12 +5,13 @@ import SetupBro from "../../Assets/Setup-rafiki.png";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import { useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../../redux/userRedux";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./Home.css";
 import { useSearchParams } from "react-router-dom";
+
 
 const Home = () => {
   document.body.style = "background: #ffffff !important;";
@@ -18,6 +19,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { loginState } = useSelector((state) => state.loginState);
 
   useEffect(() => {
     var tokenTemp = searchParams.get("token");
@@ -30,8 +32,6 @@ const Home = () => {
     }
     var token = Cookies.get("token");
     // Check if he has logged in using google
-
-    console.log(token);
     axios
       .get(`${process.env.REACT_APP_KIA}/protected`, {
         headers: {
@@ -63,6 +63,16 @@ const Home = () => {
       });
   }, []);
 
+  const getStarted = () => {
+    console.log("Hi")
+    if(loginState){
+      navigate("/upload");
+    }
+    else{
+      navigate("/login");
+    }
+  };
+
   return (
     <>
       <Container fluid className="main-sky-color-background">
@@ -77,7 +87,7 @@ const Home = () => {
               immediately
               <br /> from scrum meetings recordings!
             </p>
-            <Button className="rounded-button">Get Started</Button>
+            <Button className="rounded-button" onClick={getStarted}>Get Started</Button>
           </Col>
           <Col sm={6} className="text-center">
             <img
