@@ -77,6 +77,14 @@ const Login = () => {
     navigate("/signup");
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent form submission
+      event.stopPropagation(); // Stop event propagation
+      document.getElementById('submitBtn').click(); // Trigger form submission by clicking the submit button
+    }
+  };
+
   return (
     <div className="card-sign card-in">
       {contextHolder}
@@ -149,6 +157,8 @@ const Login = () => {
               iconRender={(visible) =>
                 visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
               }
+              onKeyPress={handleKeyPress} // Handle Enter key press
+
             />
           </Form.Item>
           <Row>
@@ -172,7 +182,7 @@ const Login = () => {
           )}
 
           <Form.Item>
-            <Button type="success" htmlType="submit" className="btn-confirm">
+            <Button type="success" htmlType="submit" className="btn-confirm" id="submitBtn">
               Login
             </Button>
           </Form.Item>
