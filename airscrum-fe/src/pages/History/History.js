@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import { fetchMeetings, fetchMeetingData } from "../../network/network";
+import { fetchMeetings, fetchMeetingData,fetchMeetingByRegex } from "../../network/network";
 const { Search } = Input;
 const History = () => {
   document.body.style = "background: #ffffff !important;";
@@ -80,8 +80,8 @@ const History = () => {
     setIsLoading(true);
     try {
       if (value) {
-        const response = await fetchMeetingData(token, value);
-        const modifiedResponse = [response.data?.meetings];
+        const response = await fetchMeetingByRegex(token, value);
+        const modifiedResponse = response.data?.meetings;
         console.log(modifiedResponse);
         setMeetingData(modifiedResponse);
       } else {
