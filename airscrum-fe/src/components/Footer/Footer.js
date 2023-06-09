@@ -72,6 +72,7 @@ const FooterBar = () => {
           </Col>
           <Col sm={4} md={4}>
             <h3 className="main-text-color">{"Contact Us"}</h3>
+            <p className="mb-0">Use this form to provide any enquires, opinions, or feedback!</p>
             <Form
               name="basicform"
               onFinishFailed={() => alert("Failed to submit")}
@@ -79,7 +80,7 @@ const FooterBar = () => {
               initialValues={{ remember: true }}
               layout="vertical"
             >
-              <Form.Item
+              {/* <Form.Item
                 label="Email"
                 name="email"
                 rules={[{ required: true, message: "Please enter the email" }]}
@@ -102,11 +103,14 @@ const FooterBar = () => {
                   placeholder="Enter your message here"
                   className="logo-user including-message-logo"
                 />
-              </Form.Item>
+              </Form.Item> */}
+
               <Form.Item>
-                <Button type="primary" htmlType="submit">
-                  Submit
+                <a href="https://forms.gle/vKGozVJRdux5AGRh6" target="_blank">
+                <Button type="primary">
+                  Contact Us
                 </Button>
+                </a>
               </Form.Item>
             </Form>
           </Col>
