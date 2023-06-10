@@ -66,6 +66,7 @@ const RecordsTable = (props) => {
       if (response.status === 201) {
         alert("Created user story successfully!");
         dispatch(increment());
+        window.location.reload();
       } else {
         alert(response?.message);
       }
