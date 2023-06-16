@@ -218,6 +218,7 @@ const Profile = () => {
                           placeholder="test123@gmail.com"
                           className="logo-user without-logo"
                           value={userProfile.email}
+                          disabled
                         />
                       </Form.Item>
                       <Form.Item label="Phone Number" name="phoneNo" colon="">
